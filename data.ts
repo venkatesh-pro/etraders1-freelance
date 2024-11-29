@@ -3,13 +3,13 @@ export const data = {
     {
       name: "Space One",
       length: "16 square metres",
-      price: "64000",
+      price: 64000,
       isSelected: true,
     },
     {
       name: "Space One Plus",
       length: "25 square metres",
-      price: "114000",
+      price: 114000,
       isSelected: false,
     },
   ],
@@ -39,13 +39,13 @@ export const data = {
     {
       name: "Open plan",
       description: "Mesa décor",
-      price: "64000",
+      price: 64000,
       isSelected: true,
     },
     {
       name: "Wardrobe",
       description: "Mesa Oak décor",
-      price: "72000",
+      price: 72000,
       isSelected: false,
     },
   ],
@@ -53,13 +53,13 @@ export const data = {
     {
       name: "Sheer curtains",
       description: "Privacy and shade",
-      price: "3700",
+      price: 3700,
       isSelected: true,
     },
     {
       name: "13-inch display",
       description: "Bigger Ultra Retina touchscreen",
-      price: "2200",
+      price: 2200,
       isSelected: false,
     },
   ],
@@ -72,7 +72,7 @@ export const data = {
     {
       name: "Full solar",
       description: "Tesla Powerwall 3 and solar array",
-      price: "28000",
+      price: 28000,
       isSelected: false,
     },
   ],
@@ -80,7 +80,7 @@ export const data = {
     {
       name: "Sheer curtains",
       description: "Privacy and shade",
-      price: "3700",
+      price: 3700,
       isSelected: false,
     },
   ],
