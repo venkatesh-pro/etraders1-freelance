@@ -4,7 +4,7 @@ import { formatNumberToCurrency } from "@/utils/functions";
 import React, { useState } from "react";
 
 const Configurator = () => {
-  const [configuratorData, setConfiguratorData] = useState(data);
+  const [configuratorData] = useState(data);
   return (
     <div className="h-full">
       {/* section 1 */}
@@ -136,9 +136,7 @@ const Configurator = () => {
       {/* final section 4 */}
       <div className="" id="section5">
         <p className="text-[24px] mt-[120px]">Your configuration</p>
-        <div className="h-[300px]">
-
-        </div>
+        <div className="h-[300px]"></div>
       </div>
     </div>
   );
