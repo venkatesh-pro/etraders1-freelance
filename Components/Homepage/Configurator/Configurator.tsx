@@ -162,7 +162,7 @@ const Configurator = ({ configuratorData, setConfiguratorData }) => {
             <div
               key={i}
               className="flex border-2 justify-between p-4 rounded-xl mt-3 cursor-pointer"
-              style={{
+                style={{
                 borderColor: `${d.isSelected ? "#0096F7" : ""}`,
               }}
               onClick={() => {

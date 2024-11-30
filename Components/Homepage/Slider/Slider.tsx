@@ -3,8 +3,6 @@ import "./Slider.css";
 
 const Slider = ({ sliderImages }) => {
   const listRef = useRef(null);
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
   const dotsRef = useRef([]);
   const [active, setActive] = useState(0);
 
@@ -26,51 +24,22 @@ const Slider = ({ sliderImages }) => {
   };
 
   useEffect(() => {
-    const items = listRef.current?.children || [];
-    const dots = dotsRef.current || [];
-    const lengthItems = items.length - 1;
-
-    const handleNextClick = () => {
-      setActive((prevActive) =>
-        prevActive + 1 > lengthItems ? 0 : prevActive + 1
-      );
-    };
-
-    const handlePrevClick = () => {
-      setActive((prevActive) =>
-        prevActive - 1 < 0 ? lengthItems : prevActive - 1
-      );
-    };
-
-    // Attach event listeners
-    const nextButton = nextRef.current;
-    const prevButton = prevRef.current;
-
-    nextButton?.addEventListener("click", handleNextClick);
-    prevButton?.addEventListener("click", handlePrevClick);
-
-    dots.forEach((dot, index) => {
-      dot.addEventListener("click", () => setActive(index));
-    });
-
-    // Clean up event listeners on unmount
-    return () => {
-      nextButton?.removeEventListener("click", handleNextClick);
-      prevButton?.removeEventListener("click", handlePrevClick);
-    };
-  }, []);
-
-  useEffect(() => {
     reloadSlider();
   }, [active]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      nextRef.current?.click();
+      setActive((prevActive) =>
+        prevActive + 1 >= sliderImages.length ? 0 : prevActive + 1
+      );
     }, 6000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [sliderImages.length]);
+
+  if (!sliderImages || sliderImages.length === 0) {
+    return <div>No images available</div>; // Handle empty images gracefully
+  }
 
   return (
     <div className="slider">
@@ -87,14 +56,29 @@ const Slider = ({ sliderImages }) => {
             key={i}
             ref={(el) => (dotsRef.current[i] = el)}
             className={i === active ? "active" : ""}
+            onClick={() => setActive(i)} // Use onClick for dots
           ></li>
         ))}
       </ul>
       <div className="buttons">
-        <button id="prev" ref={prevRef}>
+        <button
+          id="prev"
+          onClick={() =>
+            setActive((prevActive) =>
+              prevActive - 1 < 0 ? sliderImages.length - 1 : prevActive - 1
+            )
+          }
+        >
           {"<"}
         </button>
-        <button id="next" ref={nextRef}>
+        <button
+          id="next"
+          onClick={() =>
+            setActive((prevActive) =>
+              prevActive + 1 >= sliderImages.length ? 0 : prevActive + 1
+            )
+          }
+        >
           {">"}
         </button>
       </div>
