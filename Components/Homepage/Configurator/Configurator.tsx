@@ -2,7 +2,7 @@
 import { formatNumberToCurrency } from "@/utils/functions";
 import React from "react";
 
-const Configurator = ({ configuratorData }) => {
+const Configurator = ({ configuratorData, setConfiguratorData }) => {
   return (
     <div className="h-full">
       {/* section 1 */}
@@ -17,7 +17,20 @@ const Configurator = ({ configuratorData }) => {
           return (
             <div
               key={i}
+              style={{
+                borderColor: `${d.isSelected ? "#0096F7" : ""}`,
+              }}
               className="flex border-2 justify-between p-4 rounded-xl mt-3 cursor-pointer"
+              onClick={() => {
+                setConfiguratorData((prevData) => ({
+                  ...prevData,
+                  chooseYourModel: prevData.chooseYourModel.map((model) =>
+                    model.name === d.name
+                      ? { ...model, isSelected: true }
+                      : { ...model, isSelected: false }
+                  ),
+                }));
+              }}
             >
               <div>
                 <p>{d.name}</p>
@@ -32,14 +45,46 @@ const Configurator = ({ configuratorData }) => {
       {/* section 2 */}
       <div className="" id="section2">
         <p className="text-[18px] mt-[120px]">Choose your finish</p>
-        <div className="mt-[20px] flex flex-row justify-between max-w-[250px]">
+        <div className={`flex justify-between max-w-[290px] mt-[17px]`}>
           {configuratorData.chooseYourFinish.map((d, i) => {
+            console.log({ d });
+
             return (
               <div
                 key={i}
-                style={{ backgroundColor: d.color }}
-                className={`cursor-pointer rounded-full w-[38.89px] h-[38.89px]`}
-              ></div>
+                className="cursor-pointer"
+                onClick={() => {
+                  setConfiguratorData((prevData) => ({
+                    ...prevData,
+                    chooseYourFinish: prevData.chooseYourFinish.map((model) =>
+                      model.name === d.name
+                        ? { ...model, isSelected: true }
+                        : { ...model, isSelected: false }
+                    ),
+                  }));
+                }}
+              >
+                <div
+                  className={` flex items-center justify-center p-1 border-2 border-transparent  ${
+                    d.isSelected ? "border-2 rounded-full border-black" : ""
+                  }`}
+                  style={{
+                    border: `${
+                      d.isSelected ? "2px solid black" : "2px solid transparent"
+                    }`,
+                  }}
+                >
+                  <div
+                    className={` w-[38.89px] h-[38.89px] rounded-full`}
+                    style={{
+                      background: d.color,
+                    }}
+                  ></div>
+                </div>
+
+                <p className="mt-2 text-sm text-center capitalize">{d.name}</p>
+                {/* <p className="text-sm text-center">${data.price}</p> */}
+              </div>
             );
           })}
         </div>
@@ -50,7 +95,21 @@ const Configurator = ({ configuratorData }) => {
           return (
             <div
               key={i}
+              style={{
+                borderColor: `${d.isSelected ? "#0096F7" : ""}`,
+              }}
               className=" border-2 justify-between p-4 rounded-xl mt-3 cursor-pointer"
+              onClick={() => {
+                setConfiguratorData((prevData) => ({
+                  ...prevData,
+                  chooseYourOrientation: prevData.chooseYourOrientation.map(
+                    (model) =>
+                      model.name === d.name
+                        ? { ...model, isSelected: true }
+                        : { ...model, isSelected: false }
+                  ),
+                }));
+              }}
             >
               <p>{d.name}</p>
               <p className="text-[#808080] text-[12px]">{d.description}</p>
@@ -103,6 +162,19 @@ const Configurator = ({ configuratorData }) => {
             <div
               key={i}
               className="flex border-2 justify-between p-4 rounded-xl mt-3 cursor-pointer"
+              style={{
+                borderColor: `${d.isSelected ? "#0096F7" : ""}`,
+              }}
+              onClick={() => {
+                setConfiguratorData((prevData) => ({
+                  ...prevData,
+                  chooseYourEnergy: prevData.chooseYourEnergy.map((model) =>
+                    model.name === d.name
+                      ? { ...model, isSelected: true }
+                      : { ...model, isSelected: false }
+                  ),
+                }));
+              }}
             >
               <div>
                 <p>{d.name}</p>
