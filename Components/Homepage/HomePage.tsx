@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import Configurator from "./Configurator/Configurator";
@@ -15,6 +16,27 @@ const HomePage = () => {
     "/ConfiguratorImages/BLACK COMPRESSED 16:25/16-black-4.jpg",
   ]);
 
+  // Utility function to generate slider images dynamically
+  const generateSliderImages = (model, color, orientation, solar) => {
+    if (!color || !orientation || !model) return [];
+
+    const basePath = `/ConfiguratorImages/${color?.name} COMPRESSED 16:25`;
+    const mirroredPath = `/MIRRORED`;
+    const orientationPath =
+      orientation?.name === "Standard" ? "" : mirroredPath;
+    const modelPrefix = model?.name === "Space One Plus" ? "25" : "16";
+    const solarSuffix = solar.name === "No solar" ? "" : "-solar"; // Add suffix for solar condition
+    const solarImageLenght = 2;
+    // Generate image URLs for 4 images
+    return Array.from(
+      { length: solarSuffix ? solarImageLenght : 4 },
+      (_, index) => {
+        const imageIndex = index + 1;
+        return `${basePath}${orientationPath}/${modelPrefix}-${color?.name.toLocaleLowerCase()}${solarSuffix}-${imageIndex}.jpg`;
+      }
+    );
+  };
+
   useEffect(() => {
     const selectedModel = configuratorData.chooseYourModel.find(
       (d) => d.isSelected
@@ -22,74 +44,32 @@ const HomePage = () => {
     const selectedColor = configuratorData.chooseYourFinish.find(
       (d) => d.isSelected
     );
-
     const selectedOrientation = configuratorData.chooseYourOrientation.find(
       (d) => d.isSelected
     );
-    console.log(selectedColor);
+    const isSolar = configuratorData.chooseYourEnergy.find((d) => d.isSelected);
 
-    if (selectedModel?.name === "Space One") {
-      setSliderImages([
-        `/ConfiguratorImages/${selectedColor?.name} COMPRESSED 16:25/${
-          selectedOrientation?.name === "Standard"
-            ? `16-${selectedColor?.name.toLocaleLowerCase()}-1.jpg`
-            : `/MIRRORED/16-${selectedColor?.name.toLocaleLowerCase()}-1.jpg`
-        }`,
-
-        `/ConfiguratorImages/${selectedColor?.name} COMPRESSED 16:25/${
-          selectedOrientation?.name === "Standard"
-            ? `16-${selectedColor?.name.toLocaleLowerCase()}-2.jpg`
-            : `/MIRRORED/16-${selectedColor?.name.toLocaleLowerCase()}-2.jpg`
-        }`,
-        `/ConfiguratorImages/${selectedColor?.name} COMPRESSED 16:25/${
-          selectedOrientation?.name === "Standard"
-            ? `16-${selectedColor?.name.toLocaleLowerCase()}-3.jpg`
-            : `/MIRRORED/16-${selectedColor?.name.toLocaleLowerCase()}-3.jpg`
-        }`,
-        `/ConfiguratorImages/${selectedColor?.name} COMPRESSED 16:25/${
-          selectedOrientation?.name === "Standard"
-            ? `16-${selectedColor?.name.toLocaleLowerCase()}-4.jpg`
-            : `/MIRRORED/16-${selectedColor?.name.toLocaleLowerCase()}-4.jpg`
-        }`,
-      ]);
-    } else if (selectedModel?.name === "Space One Plus") {
-      setSliderImages([
-        `/ConfiguratorImages/${selectedColor?.name} COMPRESSED 16:25/${
-          selectedOrientation?.name === "Standard"
-            ? `16-${selectedColor?.name.toLocaleLowerCase()}-1.jpg`
-            : `/MIRRORED/25-${selectedColor?.name.toLocaleLowerCase()}-1.jpg`
-        }`,
-
-        `/ConfiguratorImages/${selectedColor?.name} COMPRESSED 16:25/${
-          selectedOrientation?.name === "Standard"
-            ? `16-${selectedColor?.name.toLocaleLowerCase()}-2.jpg`
-            : `/MIRRORED/25-${selectedColor?.name.toLocaleLowerCase()}-2.jpg`
-        }`,
-        `/ConfiguratorImages/${selectedColor?.name} COMPRESSED 16:25/${
-          selectedOrientation?.name === "Standard"
-            ? `16-${selectedColor?.name.toLocaleLowerCase()}-3.jpg`
-            : `/MIRRORED/25-${selectedColor?.name.toLocaleLowerCase()}-3.jpg`
-        }`,
-        `/ConfiguratorImages/${selectedColor?.name} COMPRESSED 16:25/${
-          selectedOrientation?.name === "Standard"
-            ? `16-${selectedColor?.name.toLocaleLowerCase()}-4.jpg`
-            : `/MIRRORED/25-${selectedColor?.name.toLocaleLowerCase()}-4.jpg`
-        }`,
-      ]);
-    }
+    // Update slider images dynamically
+    setSliderImages(
+      generateSliderImages(
+        selectedModel,
+        selectedColor,
+        selectedOrientation,
+        isSolar
+      )
+    );
   }, [configuratorData]);
 
   return (
     <div className="overflow-hidden">
-      {/* <pre>{JSON.stringify(configuratorData, null, 4)}</pre> */}
       <Navbar />
       <div className="flex h-[calc(100vh-50px)] justify-between">
-        {/* images */}
-        <div className="w-[70%] ">
+        {/* Images */}
+        <div className="w-[70%]">
           <Slider sliderImages={sliderImages} />
         </div>
 
-        {/* configurator */}
+        {/* Configurator */}
         <div className="w-[30%] overflow-scroll px-10">
           <Configurator
             configuratorData={configuratorData}
