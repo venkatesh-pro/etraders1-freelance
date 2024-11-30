@@ -42,10 +42,10 @@ const Slider = ({ sliderImages }) => {
   }
 
   return (
-    <div className="slider">
-      <div className="list" ref={listRef}>
+    <div className="slider w-full">
+      <div className="list  " ref={listRef}>
         {sliderImages.map((image, i) => (
-          <div className="item" key={i}>
+          <div className="item  w-[70vw]" key={i}>
             <img src={image} alt={`Slide ${i}`} />
           </div>
         ))}
@@ -63,6 +63,7 @@ const Slider = ({ sliderImages }) => {
       <div className="buttons">
         <button
           id="prev"
+          className="rounded-full text-xl"
           onClick={() =>
             setActive((prevActive) =>
               prevActive - 1 < 0 ? sliderImages.length - 1 : prevActive - 1
@@ -73,6 +74,7 @@ const Slider = ({ sliderImages }) => {
         </button>
         <button
           id="next"
+          className="rounded-full text-xl"
           onClick={() =>
             setActive((prevActive) =>
               prevActive + 1 >= sliderImages.length ? 0 : prevActive + 1

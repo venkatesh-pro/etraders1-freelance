@@ -10,6 +10,8 @@
   top: 0;
   left: 0;
   height: 100%;
+  width: 100%;
+  background: red;
   display: flex;
   width: max-content;
   transition: 1s;
