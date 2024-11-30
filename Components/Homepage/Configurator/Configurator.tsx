@@ -1,10 +1,8 @@
 "use client";
-import { data } from "@/data";
 import { formatNumberToCurrency } from "@/utils/functions";
-import React, { useState } from "react";
+import React from "react";
 
-const Configurator = () => {
-  const [configuratorData] = useState(data);
+const Configurator = ({ configuratorData }) => {
   return (
     <div className="h-full">
       {/* section 1 */}
