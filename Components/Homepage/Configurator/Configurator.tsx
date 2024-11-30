@@ -1,10 +1,58 @@
 "use client";
 import { formatNumberToCurrency } from "@/utils/functions";
-import React from "react";
+import React, { useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const Configurator = ({ configuratorData, setConfiguratorData }) => {
+gsap.registerPlugin(ScrollTrigger);
+
+const Configurator = ({
+  configuratorData,
+  setConfiguratorData,
+  setSliderImages,
+  isImageChangeScroll,
+  setIsImageChangeScroll,
+}) => {
+  useEffect(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#section3",
+        start: "top center",
+        end: "bottom center",
+        scrub: true,
+        markers: true,
+        scroller: ".left-scroll-area",
+
+        onEnter: () => {
+          console.log("Entered section3");
+          setSliderImages([
+            "/ConfiguratorImages/INTERIOR COMPRESSED 16:25/16-open.jpg",
+            "/ConfiguratorImages/INTERIOR COMPRESSED 16:25/16-wardorbe.jpg",
+            "/ConfiguratorImages/INTERIOR COMPRESSED 16:25/16-open.jpg",
+            "/ConfiguratorImages/INTERIOR COMPRESSED 16:25/16-wardorbe.jpg",
+          ]);
+        },
+        onLeave: () => {
+          console.log("Left section3");
+          setIsImageChangeScroll(!isImageChangeScroll);
+        },
+        onEnterBack: () => {
+          console.log("Re-entering section3 from below");
+          setSliderImages([
+            "/ConfiguratorImages/INTERIOR COMPRESSED 16:25/16-open.jpg",
+            "/ConfiguratorImages/INTERIOR COMPRESSED 16:25/16-wardorbe.jpg",
+          ]);
+        },
+        onLeaveBack: () => {
+          console.log("Leaving section3 from above");
+
+          setIsImageChangeScroll(!isImageChangeScroll);
+        },
+      },
+    });
+  }, []);
   return (
-    <div className="h-full">
+    <div className="h-full ">
       {/* section 1 */}
       <div className="section1">
         <h1 className="text-[40px]">Space One</h1>
@@ -162,7 +210,7 @@ const Configurator = ({ configuratorData, setConfiguratorData }) => {
             <div
               key={i}
               className="flex border-2 justify-between p-4 rounded-xl mt-3 cursor-pointer"
-                style={{
+              style={{
                 borderColor: `${d.isSelected ? "#0096F7" : ""}`,
               }}
               onClick={() => {

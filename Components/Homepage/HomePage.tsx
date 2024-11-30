@@ -8,6 +8,7 @@ import Slider from "./Slider/Slider";
 
 const HomePage = () => {
   const [configuratorData, setConfiguratorData] = useState(data);
+  const [isImageChangeScroll, setIsImageChangeScroll] = useState(false);
 
   const [sliderImages, setSliderImages] = useState([
     "/ConfiguratorImages/BLACK COMPRESSED 16:25/16-black-1.jpg",
@@ -37,7 +38,7 @@ const HomePage = () => {
     );
   };
 
-  useEffect(() => {
+  const imageStoreInStateFunction = () => {
     const selectedModel = configuratorData.chooseYourModel.find(
       (d) => d.isSelected
     );
@@ -58,7 +59,12 @@ const HomePage = () => {
         isSolar
       )
     );
-  }, [configuratorData]);
+  };
+  useEffect(() => {
+    if (configuratorData) {
+      imageStoreInStateFunction();
+    }
+  }, [configuratorData, isImageChangeScroll]);
 
   return (
     <div className="overflow-hidden">
@@ -70,10 +76,13 @@ const HomePage = () => {
         </div>
 
         {/* Configurator */}
-        <div className="w-[30%] overflow-scroll px-10">
+        <div className="w-[30%] overflow-scroll px-10 left-scroll-area">
           <Configurator
             configuratorData={configuratorData}
             setConfiguratorData={setConfiguratorData}
+            setSliderImages={setSliderImages}
+            isImageChangeScroll={isImageChangeScroll}
+            setIsImageChangeScroll={setIsImageChangeScroll}
           />
         </div>
       </div>
