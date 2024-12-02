@@ -5,7 +5,11 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ConfiguratorData } from "@/data";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  console.log("widni", window);
+
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 interface ConfiguratorProps {
   configuratorData: ConfiguratorData;
@@ -43,7 +47,7 @@ const Configurator: React.FC<ConfiguratorProps> = ({
         },
         onLeave: () => {
           console.log("Left section3");
-          setIsImageChangeScroll(!isImageChangeScroll);
+          setIsImageChangeScroll((prev: boolean) => false);
         },
         onEnterBack: () => {
           console.log("Re-entering section3 from below");
@@ -55,7 +59,7 @@ const Configurator: React.FC<ConfiguratorProps> = ({
         onLeaveBack: () => {
           console.log("Leaving section3 from above");
 
-          setIsImageChangeScroll(!isImageChangeScroll);
+          setIsImageChangeScroll((prev: boolean) => !prev);
         },
       },
     });

@@ -25,7 +25,7 @@ type Solar = {
 const HomePage = () => {
   const [configuratorData, setConfiguratorData] =
     useState<ConfiguratorData>(data);
-  const [isImageChangeScroll, setIsImageChangeScroll] = useState(false);
+  const [isImageChangeScroll, setIsImageChangeScroll] = useState<boolean>(false);
 
   const [sliderImages, setSliderImages] = useState([
     "/ConfiguratorImages/BLACK COMPRESSED 16:25/16-black-1.jpg",
