@@ -7,16 +7,24 @@ interface SliderProps {
 
 const Slider: React.FC<SliderProps> = ({ sliderImages }) => {
   const listRef = useRef<HTMLDivElement | null>(null);
+  const dotsRef = useRef<(HTMLLIElement | null)[]>([]);
   const [active, setActive] = useState(0);
 
   const reloadSlider = () => {
     if (!listRef.current) return;
 
     const items = Array.from(listRef.current.children) as HTMLElement[];
-    if (items.length === 0) return;
+    const dots = dotsRef.current;
+
+    if (items.length === 0 || dots.length === 0) return;
 
     const checkLeft = items[active].offsetLeft;
     listRef.current.style.left = -checkLeft + "px";
+
+    // Update dots
+    dots.forEach((dot, index) => {
+      dot?.classList.toggle("active", index === active);
+    });
   };
 
   useEffect(() => {
@@ -28,16 +36,14 @@ const Slider: React.FC<SliderProps> = ({ sliderImages }) => {
       setActive((prevActive) =>
         prevActive + 1 >= sliderImages.length ? 0 : prevActive + 1
       );
-    }, 6000);
+    }, 60000);
 
     return () => clearInterval(interval);
   }, [sliderImages.length]);
 
   useEffect(() => {
-    // Ensure `active` is within the valid range of the new `sliderImages` length
-    setActive((prevActive) =>
-      prevActive >= sliderImages.length ? sliderImages.length - 1 : prevActive
-    );
+    // Reset to the first image when images change
+    setActive(0);
   }, [sliderImages]);
 
   if (!sliderImages || sliderImages.length === 0) {
@@ -48,11 +54,23 @@ const Slider: React.FC<SliderProps> = ({ sliderImages }) => {
     <div className="slider w-full">
       <div className="list" ref={listRef}>
         {sliderImages.map((image: string, i: number) => (
-          <div className="item w-[70vw]" key={i}>
+          <div className="item w-[70vw] bg-red-600" key={i}>
             <img src={image} alt={`Slide ${i}`} />
           </div>
         ))}
       </div>
+      <ul className="dots">
+        {sliderImages.map((_: string, i: number) => (
+          <li
+            key={i}
+            ref={(el) => {
+              dotsRef.current[i] = el;
+            }}
+            className={i === active ? "active" : ""}
+            onClick={() => setActive(i)} // Use onClick for dots
+          ></li>
+        ))}
+      </ul>
       <div className="buttons">
         <button
           id="prev"
