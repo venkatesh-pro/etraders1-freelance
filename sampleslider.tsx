@@ -36,7 +36,7 @@ const Slider: React.FC<SliderProps> = ({ sliderImages }) => {
       setActive((prevActive) =>
         prevActive + 1 >= sliderImages.length ? 0 : prevActive + 1
       );
-    }, 60000);
+    }, 6000);
 
     return () => clearInterval(interval);
   }, [sliderImages.length]);
@@ -54,7 +54,7 @@ const Slider: React.FC<SliderProps> = ({ sliderImages }) => {
     <div className="slider w-full">
       <div className="list" ref={listRef}>
         {sliderImages.map((image: string, i: number) => (
-          <div className="item w-[70vw] bg-red-600" key={i}>
+          <div className="item w-[70vw]" key={i}>
             <img src={image} alt={`Slide ${i}`} />
           </div>
         ))}
