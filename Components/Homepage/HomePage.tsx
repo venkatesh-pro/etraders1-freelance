@@ -50,7 +50,7 @@ const HomePage = () => {
       orientation?.name === "Standard" ? "" : mirroredPath;
     const modelPrefix = model?.name === "Space One Plus" ? "25" : "16";
     const solarSuffix = solar?.name === "No solar" ? "" : "-solar"; // Add suffix for solar condition
-    const solarImageLenght = 4;
+    const solarImageLenght = 2;
     // Generate image URLs for 4 images
     return Array.from(
       { length: solarSuffix ? solarImageLenght : 4 },
