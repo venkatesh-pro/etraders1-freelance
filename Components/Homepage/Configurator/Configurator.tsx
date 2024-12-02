@@ -31,7 +31,7 @@ const Configurator: React.FC<ConfiguratorProps> = ({
         start: "top center",
         end: "bottom center",
         scrub: true,
-        markers: true,
+        // markers: true,
         scroller: ".left-scroll-area",
 
         onEnter: () => {
