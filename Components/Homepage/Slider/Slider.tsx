@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Slider.css";
+
 interface SliderProps {
   sliderImages: string[];
 }
@@ -35,10 +36,15 @@ const Slider: React.FC<SliderProps> = ({ sliderImages }) => {
       setActive((prevActive) =>
         prevActive + 1 >= sliderImages.length ? 0 : prevActive + 1
       );
-    }, 6000);
+    }, 60000);
 
     return () => clearInterval(interval);
   }, [sliderImages.length]);
+
+  useEffect(() => {
+    // Reset to the first image when images change
+    setActive(0);
+  }, [sliderImages]);
 
   if (!sliderImages || sliderImages.length === 0) {
     return <div>No images available</div>; // Handle empty images gracefully
@@ -46,9 +52,9 @@ const Slider: React.FC<SliderProps> = ({ sliderImages }) => {
 
   return (
     <div className="slider w-full">
-      <div className="list  " ref={listRef}>
+      <div className="list" ref={listRef}>
         {sliderImages.map((image: string, i: number) => (
-          <div className="item  w-[70vw]" key={i}>
+          <div className="item w-[70vw] bg-red-600" key={i}>
             <img src={image} alt={`Slide ${i}`} />
           </div>
         ))}
@@ -57,7 +63,6 @@ const Slider: React.FC<SliderProps> = ({ sliderImages }) => {
         {sliderImages.map((_: string, i: number) => (
           <li
             key={i}
-            // ref={(el) => (dotsRef.current[i] = el)}
             ref={(el) => {
               dotsRef.current[i] = el;
             }}
