@@ -85,3 +85,46 @@ export const data = {
     },
   ],
 };
+
+export interface ConfiguratorData {
+  chooseYourModel: Array<{
+    name: string;
+    length: string;
+    price: number;
+    isSelected: boolean;
+  }>;
+  chooseYourFinish: Array<{
+    color: string;
+    name: string;
+    isSelected: boolean;
+  }>;
+  chooseYourOrientation: Array<{
+    name: string;
+    description: string;
+    isSelected: boolean;
+  }>;
+  chooseYourLayout: Array<{
+    name: string;
+    description: string;
+    price: number;
+    isSelected: boolean;
+  }>;
+  optionalUpgradesForLayout: Array<{
+    name: string;
+    description: string;
+    price: number;
+    isSelected: boolean;
+  }>;
+  chooseYourEnergy: Array<{
+    name: string;
+    description: string;
+    price?: number; // Optional since "No solar" doesn't have a price
+    isSelected: boolean;
+  }>;
+  optionalUpgradesForEnergy: Array<{
+    name: string;
+    description: string;
+    price: number;
+    isSelected: boolean;
+  }>;
+}

@@ -1,15 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Slider.css";
+interface SliderProps {
+  sliderImages: string[];
+}
 
-const Slider = ({ sliderImages }) => {
-  const listRef = useRef(null);
-  const dotsRef = useRef([]);
+const Slider: React.FC<SliderProps> = ({ sliderImages }) => {
+  const listRef = useRef<HTMLDivElement | null>(null);
+  const dotsRef = useRef<(HTMLLIElement | null)[]>([]);
   const [active, setActive] = useState(0);
 
   const reloadSlider = () => {
     if (!listRef.current) return;
 
-    const items = listRef.current.children;
+    const items = Array.from(listRef.current.children) as HTMLElement[];
     const dots = dotsRef.current;
 
     if (items.length === 0 || dots.length === 0) return;
@@ -19,7 +22,7 @@ const Slider = ({ sliderImages }) => {
 
     // Update dots
     dots.forEach((dot, index) => {
-      dot.classList.toggle("active", index === active);
+      dot?.classList.toggle("active", index === active);
     });
   };
 
@@ -44,17 +47,20 @@ const Slider = ({ sliderImages }) => {
   return (
     <div className="slider w-full">
       <div className="list  " ref={listRef}>
-        {sliderImages.map((image, i) => (
+        {sliderImages.map((image: string, i: number) => (
           <div className="item  w-[70vw]" key={i}>
             <img src={image} alt={`Slide ${i}`} />
           </div>
         ))}
       </div>
       <ul className="dots">
-        {sliderImages.map((_, i) => (
+        {sliderImages.map((_: string, i: number) => (
           <li
             key={i}
-            ref={(el) => (dotsRef.current[i] = el)}
+            // ref={(el) => (dotsRef.current[i] = el)}
+            ref={(el) => {
+              dotsRef.current[i] = el;
+            }}
             className={i === active ? "active" : ""}
             onClick={() => setActive(i)} // Use onClick for dots
           ></li>

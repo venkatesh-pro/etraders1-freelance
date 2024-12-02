@@ -3,10 +3,19 @@ import { formatNumberToCurrency } from "@/utils/functions";
 import React, { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ConfiguratorData } from "@/data";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Configurator = ({
+interface ConfiguratorProps {
+  configuratorData: ConfiguratorData;
+  setConfiguratorData: (data: ConfiguratorData) => void;
+  setSliderImages: (images: string[]) => void;
+  isImageChangeScroll: boolean;
+  setIsImageChangeScroll: (value: boolean) => void;
+}
+
+const Configurator: React.FC<ConfiguratorProps> = ({
   configuratorData,
   setConfiguratorData,
   setSliderImages,
@@ -14,7 +23,7 @@ const Configurator = ({
   setIsImageChangeScroll,
 }) => {
   useEffect(() => {
-    const tl = gsap.timeline({
+    gsap.timeline({
       scrollTrigger: {
         trigger: "#section3",
         start: "top center",
@@ -70,14 +79,17 @@ const Configurator = ({
               }}
               className="flex border-2 justify-between p-4 rounded-xl mt-3 cursor-pointer"
               onClick={() => {
-                setConfiguratorData((prevData) => ({
-                  ...prevData,
-                  chooseYourModel: prevData.chooseYourModel.map((model) =>
-                    model.name === d.name
-                      ? { ...model, isSelected: true }
-                      : { ...model, isSelected: false }
+                const updatedData: ConfiguratorData = {
+                  ...configuratorData,
+                  chooseYourModel: configuratorData.chooseYourModel.map(
+                    (model) =>
+                      model.name === d.name
+                        ? { ...model, isSelected: true }
+                        : { ...model, isSelected: false }
                   ),
-                }));
+                };
+
+                setConfiguratorData(updatedData);
               }}
             >
               <div>
@@ -102,14 +114,17 @@ const Configurator = ({
                 key={i}
                 className="cursor-pointer"
                 onClick={() => {
-                  setConfiguratorData((prevData) => ({
-                    ...prevData,
-                    chooseYourFinish: prevData.chooseYourFinish.map((model) =>
-                      model.name === d.name
-                        ? { ...model, isSelected: true }
-                        : { ...model, isSelected: false }
+                  const updatedData: ConfiguratorData = {
+                    ...configuratorData,
+                    chooseYourFinish: configuratorData.chooseYourFinish.map(
+                      (model) =>
+                        model.name === d.name
+                          ? { ...model, isSelected: true }
+                          : { ...model, isSelected: false }
                     ),
-                  }));
+                  };
+
+                  setConfiguratorData(updatedData);
                 }}
               >
                 <div
@@ -148,15 +163,17 @@ const Configurator = ({
               }}
               className=" border-2 justify-between p-4 rounded-xl mt-3 cursor-pointer"
               onClick={() => {
-                setConfiguratorData((prevData) => ({
-                  ...prevData,
-                  chooseYourOrientation: prevData.chooseYourOrientation.map(
-                    (model) =>
+                const updatedData: ConfiguratorData = {
+                  ...configuratorData,
+                  chooseYourOrientation:
+                    configuratorData.chooseYourOrientation.map((model) =>
                       model.name === d.name
                         ? { ...model, isSelected: true }
                         : { ...model, isSelected: false }
-                  ),
-                }));
+                    ),
+                };
+
+                setConfiguratorData(updatedData);
               }}
             >
               <p>{d.name}</p>
@@ -214,14 +231,17 @@ const Configurator = ({
                 borderColor: `${d.isSelected ? "#0096F7" : ""}`,
               }}
               onClick={() => {
-                setConfiguratorData((prevData) => ({
-                  ...prevData,
-                  chooseYourEnergy: prevData.chooseYourEnergy.map((model) =>
-                    model.name === d.name
-                      ? { ...model, isSelected: true }
-                      : { ...model, isSelected: false }
+                const updatedData: ConfiguratorData = {
+                  ...configuratorData,
+                  chooseYourEnergy: configuratorData.chooseYourEnergy.map(
+                    (model) =>
+                      model.name === d.name
+                        ? { ...model, isSelected: true }
+                        : { ...model, isSelected: false }
                   ),
-                }));
+                };
+
+                setConfiguratorData(updatedData);
               }}
             >
               <div>

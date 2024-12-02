@@ -3,11 +3,28 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import Configurator from "./Configurator/Configurator";
-import { data } from "@/data";
+import { ConfiguratorData, data } from "@/data";
 import Slider from "./Slider/Slider";
 
+type Model = {
+  name: string;
+};
+
+type Color = {
+  name: string;
+};
+
+type Orientation = {
+  name: string;
+};
+
+type Solar = {
+  name: string;
+};
+
 const HomePage = () => {
-  const [configuratorData, setConfiguratorData] = useState(data);
+  const [configuratorData, setConfiguratorData] =
+    useState<ConfiguratorData>(data);
   const [isImageChangeScroll, setIsImageChangeScroll] = useState(false);
 
   const [sliderImages, setSliderImages] = useState([
@@ -18,7 +35,12 @@ const HomePage = () => {
   ]);
 
   // Utility function to generate slider images dynamically
-  const generateSliderImages = (model, color, orientation, solar) => {
+  const generateSliderImages = (
+    model: Model | undefined,
+    color: Color | undefined,
+    orientation: Orientation | undefined,
+    solar: Solar | undefined
+  ) => {
     if (!color || !orientation || !model) return [];
 
     const basePath = `/ConfiguratorImages/${color?.name} COMPRESSED 16:25`;
@@ -26,7 +48,7 @@ const HomePage = () => {
     const orientationPath =
       orientation?.name === "Standard" ? "" : mirroredPath;
     const modelPrefix = model?.name === "Space One Plus" ? "25" : "16";
-    const solarSuffix = solar.name === "No solar" ? "" : "-solar"; // Add suffix for solar condition
+    const solarSuffix = solar?.name === "No solar" ? "" : "-solar"; // Add suffix for solar condition
     const solarImageLenght = 4;
     // Generate image URLs for 4 images
     return Array.from(
@@ -68,6 +90,7 @@ const HomePage = () => {
 
   return (
     <div className="overflow-hidden">
+      {/* <pre>{JSON.stringify(configuratorData, null, 4)}</pre> */}
       <Navbar />
       <div className="flex h-[calc(100vh-50px)] justify-between">
         {/* Images */}
