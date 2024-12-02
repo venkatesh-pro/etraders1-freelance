@@ -15,15 +15,13 @@ interface ConfiguratorProps {
   configuratorData: ConfiguratorData;
   setConfiguratorData: (data: ConfiguratorData) => void;
   setSliderImages: (images: string[]) => void;
-  isImageChangeScroll: boolean;
-  setIsImageChangeScroll: (value: boolean) => void;
+  setIsImageChangeScroll: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Configurator: React.FC<ConfiguratorProps> = ({
   configuratorData,
   setConfiguratorData,
   setSliderImages,
-  isImageChangeScroll,
   setIsImageChangeScroll,
 }) => {
   useEffect(() => {
@@ -47,7 +45,7 @@ const Configurator: React.FC<ConfiguratorProps> = ({
         },
         onLeave: () => {
           console.log("Left section3");
-          setIsImageChangeScroll((prev: boolean) => false);
+          setIsImageChangeScroll((prev: boolean) => !prev);
         },
         onEnterBack: () => {
           console.log("Re-entering section3 from below");
