@@ -15,9 +15,9 @@ export const data = {
   ],
 
   chooseYourFinish: [
-    { color: "#000000", name: "BLACK", isSelected: false },
+    { color: "#000000", name: "BLACK", isSelected: true },
     { color: "#E8E8E8", name: "WHITE", isSelected: false },
-    { color: "#BCB7AD", name: "DESERT", isSelected: true },
+    { color: "#BCB7AD", name: "DESERT", isSelected: false },
     { color: "#565656", name: "SPACE", isSelected: false },
     { color: "#344C3F", name: "SAGE", isSelected: false },
   ],

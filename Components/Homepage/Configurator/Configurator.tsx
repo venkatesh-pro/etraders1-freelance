@@ -1,6 +1,6 @@
 "use client";
 import { formatNumberToCurrency } from "@/utils/functions";
-import React, { useEffect } from "react";
+import React, { useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ConfiguratorData } from "@/data";
@@ -24,8 +24,8 @@ const Configurator: React.FC<ConfiguratorProps> = ({
   setSliderImages,
   setIsImageChangeScroll,
 }) => {
-  useEffect(() => {
-    gsap.timeline({
+  useLayoutEffect(() => {
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#section3",
         start: "top center",
@@ -37,8 +37,6 @@ const Configurator: React.FC<ConfiguratorProps> = ({
         onEnter: () => {
           console.log("Entered section3");
           setSliderImages([
-            "/ConfiguratorImages/INTERIOR COMPRESSED 16:25/16-open.jpg",
-            "/ConfiguratorImages/INTERIOR COMPRESSED 16:25/16-wardorbe.jpg",
             "/ConfiguratorImages/INTERIOR COMPRESSED 16:25/16-open.jpg",
             "/ConfiguratorImages/INTERIOR COMPRESSED 16:25/16-wardorbe.jpg",
           ]);
@@ -61,6 +59,10 @@ const Configurator: React.FC<ConfiguratorProps> = ({
         },
       },
     });
+
+    return () => {
+      tl.kill();
+    };
   }, []);
   return (
     <div className="h-full ">
