@@ -1,14 +1,17 @@
 "use client";
 import { formatNumberToCurrency } from "@/utils/functions";
-import React, { useLayoutEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React from "react";
+import { gsap } from "gsap/dist/gsap";
 import { ConfiguratorData } from "@/data";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+// import { ScrollSmoother } from "gsap/dist/ScrollSmoother";
+
+import { ScrollSmoother } from "gsap-trial/dist/ScrollSmoother";
+
+import { useGSAP } from "@gsap/react";
 
 if (typeof window !== "undefined") {
-  console.log("widni", window);
-
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(useGSAP);
 }
 
 interface ConfiguratorProps {
@@ -24,16 +27,25 @@ const Configurator: React.FC<ConfiguratorProps> = ({
   setSliderImages,
   setIsImageChangeScroll,
 }) => {
-  useLayoutEffect(() => {
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+    const smoother = ScrollSmoother.create({
+      // wrapper: "#smooth-wrapper",
+      // content: "#smooth-content",
+      smooth: 1,
+      speed: 0.2,
+      effects: true,
+    });
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#section3",
         start: "top center",
         end: "bottom center",
         scrub: true,
-        // markers: true,
-        scroller: ".left-scroll-area",
-
+        markers: false,
+        scroller: smoother?.wrapper() as HTMLElement,
         onEnter: () => {
           console.log("Entered section3");
           setSliderImages([
@@ -65,7 +77,7 @@ const Configurator: React.FC<ConfiguratorProps> = ({
     };
   }, []);
   return (
-    <div className="h-full ">
+    <div className="h-full left-scroll-area">
       {/* section 1 */}
       <div className="section1">
         <h1 className="text-[40px]">Space One</h1>

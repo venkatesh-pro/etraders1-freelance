@@ -95,18 +95,23 @@ const HomePage = () => {
       <Navbar />
       <div className="flex h-[calc(100vh-50px)] justify-between">
         {/* Images */}
-        <div className="w-[70%]">
+        <div className="w-[70%] h-[calc(100vh-50px)] mt-[calc(100vh-(100vh-50px))] fixed top-0 bottom-0 left-0 ">
           <Slider sliderImages={sliderImages} />
         </div>
 
         {/* Configurator */}
-        <div className="w-[30%] overflow-scroll px-10 left-scroll-area">
-          <Configurator
-            configuratorData={configuratorData}
-            setConfiguratorData={setConfiguratorData}
-            setSliderImages={setSliderImages}
-            setIsImageChangeScroll={setIsImageChangeScroll}
-          />
+
+        <div id="smooth-content">
+          <div className="overflow-scroll px-10 " style={{
+            marginTop:'40px'
+          }}>
+            <Configurator
+              configuratorData={configuratorData}
+              setConfiguratorData={setConfiguratorData}
+              setSliderImages={setSliderImages}
+              setIsImageChangeScroll={setIsImageChangeScroll}
+            />
+          </div>
         </div>
       </div>
     </div>

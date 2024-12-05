@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.ScrollSmoother-wrapper {
+  width: 30vw !important;
+  left: 70vw !important;
+  height: calc(100vh - 50px);
+  overflow: hidden;
+}
