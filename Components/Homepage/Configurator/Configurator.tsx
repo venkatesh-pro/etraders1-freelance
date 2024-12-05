@@ -6,8 +6,6 @@ import { ConfiguratorData } from "@/data";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 // import { ScrollSmoother } from "gsap/dist/ScrollSmoother";
 
-import { ScrollSmoother } from "gsap-trial/dist/ScrollSmoother";
-
 import { useGSAP } from "@gsap/react";
 
 if (typeof window !== "undefined") {
@@ -28,15 +26,7 @@ const Configurator: React.FC<ConfiguratorProps> = ({
   setIsImageChangeScroll,
 }) => {
   useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-
-    const smoother = ScrollSmoother.create({
-      // wrapper: "#smooth-wrapper",
-      // content: "#smooth-content",
-      smooth: 1,
-      speed: 0.2,
-      effects: true,
-    });
+    gsap.registerPlugin(ScrollTrigger);
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -44,8 +34,8 @@ const Configurator: React.FC<ConfiguratorProps> = ({
         start: "top center",
         end: "bottom center",
         scrub: true,
-        markers: false,
-        scroller: smoother?.wrapper() as HTMLElement,
+        markers: true,
+        scroller: ".left-scroll-area",
         onEnter: () => {
           console.log("Entered section3");
           setSliderImages([
@@ -79,7 +69,7 @@ const Configurator: React.FC<ConfiguratorProps> = ({
   return (
     <div className="h-full left-scroll-area">
       {/* section 1 */}
-      <div className="section1">
+      <section className="section section1">
         <h1 className="text-[40px]">Space One</h1>
         <p className="text-[#808080] mt-[20px]">
           Configure your Space One design. Choose a layout, pick your cladding
@@ -116,10 +106,10 @@ const Configurator: React.FC<ConfiguratorProps> = ({
             </div>
           );
         })}
-      </div>
+      </section>
 
       {/* section 2 */}
-      <div className="" id="section2">
+      <section className="section" id="section2">
         <p className="text-[18px] mt-[120px]">Choose your finish</p>
         <div className={`flex justify-between max-w-[290px] mt-[17px]`}>
           {configuratorData.chooseYourFinish.map((d, i) => {
@@ -197,10 +187,10 @@ const Configurator: React.FC<ConfiguratorProps> = ({
             </div>
           );
         })}
-      </div>
+      </section>
 
       {/* section 3 */}
-      <div className="" id="section3">
+      <section className="section" id="section3">
         <p className="text-[18px] mt-[120px]">Choose your layout</p>
         {configuratorData.chooseYourLayout.map((d, i) => {
           return (
@@ -233,10 +223,10 @@ const Configurator: React.FC<ConfiguratorProps> = ({
             </div>
           );
         })}
-      </div>
+      </section>
 
       {/* section 4 */}
-      <div className="" id="section4">
+      <section className="section" id="section4">
         <p className="text-[18px] mt-[120px]">Choose your energy</p>
         {configuratorData.chooseYourEnergy.map((d, i) => {
           return (
@@ -285,10 +275,10 @@ const Configurator: React.FC<ConfiguratorProps> = ({
             </div>
           );
         })}
-      </div>
+      </section>
 
       {/* final section 4 */}
-      <div className="" id="section5">
+      <div className="section" id="section5">
         <p className="text-[24px] mt-[120px]">Your configuration</p>
         <div className="h-[300px]"></div>
       </div>

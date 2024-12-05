@@ -88,30 +88,59 @@ const HomePage = () => {
       imageStoreInStateFunction();
     }
   }, [configuratorData, isImageChangeScroll]);
+  useEffect(() => {
+    let lenis;
+
+    (async () => {
+      const Lenis = (await import("lenis")).default;
+
+      // Initialize Lenis
+      lenis = new Lenis({
+        smooth: true, // Enables smooth scrolling
+        duration:4, // Duration of the smooth scroll effect
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Custom easing
+        direction: "vertical", // Scrolling direction (vertical/horizontal)
+      });
+
+      // Log scroll event for debugging
+      lenis.on("scroll", (e) => {
+        console.log("Scroll event:", e);
+      });
+
+      // Animation frame loop to ensure Lenis runs smoothly
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
+      requestAnimationFrame(raf);
+    })();
+
+    // Cleanup on component unmount
+    return () => {
+      if (lenis) lenis.destroy();
+    };
+  }, []);
 
   return (
-    <div className="overflow-hidden">
+    <div className="">
       {/* <pre>{JSON.stringify(configuratorData, null, 4)}</pre> */}
       <Navbar />
-      <div className="flex h-[calc(100vh-50px)] justify-between">
+      <div className="flex  h-[calc(100vh-50px)] justify-between">
         {/* Images */}
-        <div className="w-[70%] h-[calc(100vh-50px)] mt-[calc(100vh-(100vh-50px))] fixed top-0 bottom-0 left-0 ">
+        <div className="w-[70%] mt-[calc(100vh-(100vh-50px))] fixed top-0 bottom-0 left-0 h-[calc(100vh-50px)] ">
           <Slider sliderImages={sliderImages} />
         </div>
 
         {/* Configurator */}
 
-        <div id="smooth-content">
-          <div className="overflow-scroll px-10 " style={{
-            marginTop:'40px'
-          }}>
-            <Configurator
-              configuratorData={configuratorData}
-              setConfiguratorData={setConfiguratorData}
-              setSliderImages={setSliderImages}
-              setIsImageChangeScroll={setIsImageChangeScroll}
-            />
-          </div>
+        <div className="px-10 absolute z-10 top-0 bottom-0 right-0 w-[30vw] mt-[calc(100vh-(100vh-50px))]">
+          <Configurator
+            configuratorData={configuratorData}
+            setConfiguratorData={setConfiguratorData}
+            setSliderImages={setSliderImages}
+            setIsImageChangeScroll={setIsImageChangeScroll}
+          />
         </div>
       </div>
     </div>

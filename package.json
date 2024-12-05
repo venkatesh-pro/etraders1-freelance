@@ -13,6 +13,7 @@
     "autoprefixer": "^10.4.20",
     "gsap": "^3.12.5",
     "gsap-trial": "^3.12.5",
+    "lenis": "^1.1.18",
     "locomotive-scroll": "^4.1.4",
     "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",
