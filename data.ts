@@ -56,12 +56,12 @@ export const data = {
       price: 3700,
       isSelected: true,
     },
-    {
-      name: "13-inch display",
-      description: "Bigger Ultra Retina touchscreen",
-      price: 2200,
-      isSelected: false,
-    },
+    // {
+    //   name: "13-inch display",
+    //   description: "Bigger Ultra Retina touchscreen",
+    //   price: 2200,
+    //   isSelected: false,
+    // },
   ],
   chooseYourEnergy: [
     {
