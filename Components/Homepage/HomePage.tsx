@@ -88,39 +88,39 @@ const HomePage = () => {
       imageStoreInStateFunction();
     }
   }, [configuratorData, isImageChangeScroll]);
-  useEffect(() => {
-    let lenis;
+  // useEffect(() => {
+  //   let lenis;
 
-    (async () => {
-      const Lenis = (await import("lenis")).default;
+  //   (async () => {
+  //     const Lenis = (await import("lenis")).default;
 
-      // Initialize Lenis
-      lenis = new Lenis({
-        smooth: true, // Enables smooth scrolling
-        duration:4, // Duration of the smooth scroll effect
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Custom easing
-        direction: "vertical", // Scrolling direction (vertical/horizontal)
-      });
+  //     // Initialize Lenis
+  //     lenis = new Lenis({
+  //       smooth: true, // Enables smooth scrolling
+  //       duration: 4, // Duration of the smooth scroll effect
+  //       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Custom easing
+  //       direction: "vertical", // Scrolling direction (vertical/horizontal)
+  //     });
 
-      // Log scroll event for debugging
-      lenis.on("scroll", (e) => {
-        console.log("Scroll event:", e);
-      });
+  //     // Log scroll event for debugging
+  //     lenis.on("scroll", (e) => {
+  //       console.log("Scroll event:", e);
+  //     });
 
-      // Animation frame loop to ensure Lenis runs smoothly
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
+  //     // Animation frame loop to ensure Lenis runs smoothly
+  //     function raf(time) {
+  //       lenis.raf(time);
+  //       requestAnimationFrame(raf);
+  //     }
 
-      requestAnimationFrame(raf);
-    })();
+  //     requestAnimationFrame(raf);
+  //   })();
 
-    // Cleanup on component unmount
-    return () => {
-      if (lenis) lenis.destroy();
-    };
-  }, []);
+  //   // Cleanup on component unmount
+  //   return () => {
+  //     if (lenis) lenis.destroy();
+  //   };
+  // }, []);
 
   return (
     <div className="">

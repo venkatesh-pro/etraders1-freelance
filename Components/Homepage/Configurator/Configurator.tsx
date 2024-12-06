@@ -1,6 +1,6 @@
 "use client";
 import { formatNumberToCurrency } from "@/utils/functions";
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { gsap } from "gsap/dist/gsap";
 import { ConfiguratorData } from "@/data";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -25,6 +25,40 @@ const Configurator: React.FC<ConfiguratorProps> = ({
   setSliderImages,
   setIsImageChangeScroll,
 }) => {
+  useLayoutEffect(() => {
+    let lenis: import("lenis").default | null = null;
+
+    (async () => {
+      const Lenis = (await import("lenis")).default;
+
+      // Initialize Lenis
+      lenis = new Lenis({
+        // smooth: true, // Enables smooth scrolling
+        duration: 3, // Duration of the smooth scroll effect
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Custom easing
+        // direction: "vertical", // Scrolling direction (vertical/horizontal)
+      });
+
+      // Log scroll event for debugging
+      lenis.on("scroll", (e) => {
+        console.log("Scroll event:", e);
+      });
+
+      // Animation frame loop to ensure Lenis runs smoothly
+      function raf(time: number) {
+        lenis?.raf(time);
+        requestAnimationFrame(raf);
+      }
+
+      requestAnimationFrame(raf);
+    })();
+
+    // Cleanup on component unmount
+    return () => {
+      if (lenis) lenis.destroy();
+    };
+  }, []);
+
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
 
