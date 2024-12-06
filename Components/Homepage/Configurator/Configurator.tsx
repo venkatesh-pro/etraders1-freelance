@@ -13,6 +13,7 @@ if (typeof window !== "undefined") {
 }
 
 interface ConfiguratorProps {
+  currentModel: string;
   configuratorData: ConfiguratorData;
   setConfiguratorData: (data: ConfiguratorData) => void;
   setSliderImages: (images: string[]) => void;
@@ -20,6 +21,7 @@ interface ConfiguratorProps {
 }
 
 const Configurator: React.FC<ConfiguratorProps> = ({
+  currentModel,
   configuratorData,
   setConfiguratorData,
   setSliderImages,
@@ -226,20 +228,39 @@ const Configurator: React.FC<ConfiguratorProps> = ({
       {/* section 3 */}
       <section className="section" id="section3">
         <p className="text-[18px] mt-[120px]">Choose your layout</p>
-        {configuratorData.chooseYourLayout.map((d, i) => {
-          return (
-            <div
-              key={i}
-              className="flex border-2 justify-between p-4 rounded-xl mt-3 cursor-pointer"
-            >
-              <div>
-                <p>{d.name}</p>
-                <p>{d.description}</p>
+        {/* 16 inch */}
+        {currentModel === "Space One" &&
+          configuratorData.chooseYourLayoutFor16.map((d, i) => {
+            return (
+              <div
+                key={i}
+                className="flex border-2 justify-between p-4 rounded-xl mt-3 cursor-pointer"
+              >
+                <div>
+                  <p>{d.name}</p>
+                  <p>{d.description}</p>
+                </div>
+                <div>From {formatNumberToCurrency(d.price)}</div>
               </div>
-              <div>From {formatNumberToCurrency(d.price)}</div>
-            </div>
-          );
-        })}
+            );
+          })}
+
+        {/* 25 inch */}
+        {currentModel === "Space One Plus" &&
+          configuratorData.chooseYourLayoutFor25.map((d, i) => {
+            return (
+              <div
+                key={i}
+                className="flex border-2 justify-between p-4 rounded-xl mt-3 cursor-pointer"
+              >
+                <div>
+                  <p>{d.name}</p>
+                  <p>{d.description}</p>
+                </div>
+                <div>From {formatNumberToCurrency(d.price)}</div>
+              </div>
+            );
+          })}
 
         {/* Choose your orientation */}
         <p className="text-[18px] mt-[120px]">Optional upgrades</p>

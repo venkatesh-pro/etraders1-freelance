@@ -28,6 +28,9 @@ const HomePage = () => {
   const [isImageChangeScroll, setIsImageChangeScroll] =
     useState<boolean>(false);
 
+  // 16 or 25 sq metres
+  const [currentModel, setCurrentModel] = useState("");
+
   const [sliderImages, setSliderImages] = useState([
     "/ConfiguratorImages/BLACK COMPRESSED 16:25/16-black-1.jpg",
     "/ConfiguratorImages/BLACK COMPRESSED 16:25/16-black-2.jpg",
@@ -65,6 +68,11 @@ const HomePage = () => {
     const selectedModel = configuratorData.chooseYourModel.find(
       (d) => d.isSelected
     );
+
+    if (selectedModel) {
+      setCurrentModel(selectedModel?.name);
+    }
+
     const selectedColor = configuratorData.chooseYourFinish.find(
       (d) => d.isSelected
     );
@@ -136,6 +144,7 @@ const HomePage = () => {
 
         <div className="px-10 w-[30%] overflow-scroll left-scroll-area">
           <Configurator
+            currentModel={currentModel}
             configuratorData={configuratorData}
             setConfiguratorData={setConfiguratorData}
             setSliderImages={setSliderImages}

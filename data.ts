@@ -35,15 +35,35 @@ export const data = {
   ],
 
   // for interiors
-  chooseYourLayout: [
+  chooseYourLayoutFor16: [
     {
-      name: "Open plan",
+      name: "Studio",
       description: "Mesa décor",
       price: 64000,
       isSelected: true,
     },
     {
-      name: "Wardrobe",
+      name: "Bedroom",
+      description: "Mesa Oak décor",
+      price: 72000,
+      isSelected: false,
+    },
+  ],
+  chooseYourLayoutFor25: [
+    {
+      name: "Bedoom suite",
+      description: "Mesa décor",
+      price: 64000,
+      isSelected: true,
+    },
+    {
+      name: "Bedroom ensuite",
+      description: "Mesa Oak décor",
+      price: 72000,
+      isSelected: false,
+    },
+    {
+      name: "Studio ensuite",
       description: "Mesa Oak décor",
       price: 72000,
       isSelected: false,
@@ -103,7 +123,13 @@ export interface ConfiguratorData {
     description: string;
     isSelected: boolean;
   }>;
-  chooseYourLayout: Array<{
+  chooseYourLayoutFor16: Array<{
+    name: string;
+    description: string;
+    price: number;
+    isSelected: boolean;
+  }>;
+  chooseYourLayoutFor25: Array<{
     name: string;
     description: string;
     price: number;
