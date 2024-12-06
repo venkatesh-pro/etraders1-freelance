@@ -69,13 +69,12 @@ const HomePage = () => {
     // if (!color || !orientation || !model) return [];
 
     const basePath = `/ConfiguratorImages/INTERIOR COMPRESSED 16:25`;
-    const mirroredPath = `/MIRRORED`;
 
     const modelPrefix = currentModel === "Space One Plus" ? "25" : "16";
     console.log({ modelPrefix, currentModel });
 
     if (modelPrefix === "16") {
-      if (mirroredPath) {
+      if (isMirrored) {
         return [
           `${basePath}/MIRRORED/16-open.jpg`,
           `${basePath}/MIRRORED/16-wardorbe.jpg`,
@@ -84,7 +83,7 @@ const HomePage = () => {
         return [`${basePath}/16-open.jpg`, `${basePath}/16-wardorbe.jpg`];
       }
     } else {
-      if (mirroredPath) {
+      if (isMirrored) {
         return [
           `${basePath}/MIRRORED/25-bathroom-ensuite.jpg`,
           `${basePath}/MIRRORED/25-kitchen-1.jpg`,
@@ -174,7 +173,7 @@ const HomePage = () => {
 
   return (
     <div className="overflow-hidden">
-      {/* <pre>{JSON.stringify(isMirrored, null, 4)}</pre> */}
+      <pre>{JSON.stringify(isMirrored, null, 4)}</pre>
       <Navbar />
       <div className="flex h-[calc(100vh-50px)] justify-between">
         {/* Images */}
