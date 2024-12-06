@@ -14,18 +14,22 @@ if (typeof window !== "undefined") {
 
 interface ConfiguratorProps {
   currentModel: string;
+  isMirrored: boolean;
   configuratorData: ConfiguratorData;
   setConfiguratorData: (data: ConfiguratorData) => void;
   setSliderImages: (images: string[]) => void;
   setIsImageChangeScroll: React.Dispatch<React.SetStateAction<boolean>>;
+  generateSliderImagesForInterior: () => string[];
 }
 
 const Configurator: React.FC<ConfiguratorProps> = ({
   currentModel,
+  isMirrored,
   configuratorData,
   setConfiguratorData,
   setSliderImages,
   setIsImageChangeScroll,
+  generateSliderImagesForInterior,
 }) => {
   // useLayoutEffect(() => {
   //   let lenis: import("lenis").default | null = null;
@@ -74,10 +78,7 @@ const Configurator: React.FC<ConfiguratorProps> = ({
         scroller: ".left-scroll-area",
         onEnter: () => {
           console.log("Entered section3");
-          setSliderImages([
-            "/ConfiguratorImages/INTERIOR COMPRESSED 16:25/16-open.jpg",
-            "/ConfiguratorImages/INTERIOR COMPRESSED 16:25/16-wardorbe.jpg",
-          ]);
+          setSliderImages(generateSliderImagesForInterior());
         },
         onLeave: () => {
           console.log("Left section3");
@@ -85,10 +86,12 @@ const Configurator: React.FC<ConfiguratorProps> = ({
         },
         onEnterBack: () => {
           console.log("Re-entering section3 from below");
-          setSliderImages([
-            "/ConfiguratorImages/INTERIOR COMPRESSED 16:25/16-open.jpg",
-            "/ConfiguratorImages/INTERIOR COMPRESSED 16:25/16-wardorbe.jpg",
-          ]);
+          // setSliderImages([
+          //   "/ConfiguratorImages/INTERIOR COMPRESSED 16:25/16-open.jpg",
+          //   "/ConfiguratorImages/INTERIOR COMPRESSED 16:25/16-wardorbe.jpg",
+          // ]);
+
+          setSliderImages(generateSliderImagesForInterior());
         },
         onLeaveBack: () => {
           console.log("Leaving section3 from above");
@@ -101,7 +104,7 @@ const Configurator: React.FC<ConfiguratorProps> = ({
     return () => {
       tl.kill();
     };
-  }, []);
+  }, [currentModel, isMirrored]);
   return (
     <div className="h-full left-scroll-area">
       {/* section 1 */}

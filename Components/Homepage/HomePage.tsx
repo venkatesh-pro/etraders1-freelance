@@ -31,6 +31,8 @@ const HomePage = () => {
   // 16 or 25 sq metres
   const [currentModel, setCurrentModel] = useState("");
 
+  const [isMirrored, setIsMirrored] = useState(false);
+
   const [sliderImages, setSliderImages] = useState([
     "/ConfiguratorImages/BLACK COMPRESSED 16:25/16-black-1.jpg",
     "/ConfiguratorImages/BLACK COMPRESSED 16:25/16-black-2.jpg",
@@ -63,6 +65,42 @@ const HomePage = () => {
       }
     );
   };
+  const generateSliderImagesForInterior = () => {
+    // if (!color || !orientation || !model) return [];
+
+    const basePath = `/ConfiguratorImages/INTERIOR COMPRESSED 16:25`;
+    const mirroredPath = `/MIRRORED`;
+
+    const modelPrefix = currentModel === "Space One Plus" ? "25" : "16";
+    console.log({ modelPrefix, currentModel });
+
+    if (modelPrefix === "16") {
+      if (mirroredPath) {
+        return [
+          `${basePath}/MIRRORED/16-open.jpg`,
+          `${basePath}/MIRRORED/16-wardorbe.jpg`,
+        ];
+      } else {
+        return [`${basePath}/16-open.jpg`, `${basePath}/16-wardorbe.jpg`];
+      }
+    } else {
+      if (mirroredPath) {
+        return [
+          `${basePath}/MIRRORED/25-bathroom-ensuite.jpg`,
+          `${basePath}/MIRRORED/25-kitchen-1.jpg`,
+          `${basePath}/MIRRORED/25-kitchen-2.jpg`,
+          `${basePath}/MIRRORED/25-wardrobe-ensuite.jpg`,
+        ];
+      } else {
+        return [
+          `${basePath}/25-bathroom-ensuite.jpg`,
+          `${basePath}/25-kitchen-1.jpg`,
+          `${basePath}/25-kitchen-2.jpg`,
+          `${basePath}/25-wardrobe-ensuite.jpg`,
+        ];
+      }
+    }
+  };
 
   const imageStoreInStateFunction = () => {
     const selectedModel = configuratorData.chooseYourModel.find(
@@ -79,6 +117,10 @@ const HomePage = () => {
     const selectedOrientation = configuratorData.chooseYourOrientation.find(
       (d) => d.isSelected
     );
+    if (selectedOrientation) {
+      setIsMirrored(selectedOrientation.name === "Standard" ? false : true);
+    }
+
     const isSolar = configuratorData.chooseYourEnergy.find((d) => d.isSelected);
 
     // Update slider images dynamically
@@ -132,7 +174,7 @@ const HomePage = () => {
 
   return (
     <div className="overflow-hidden">
-      {/* <pre>{JSON.stringify(configuratorData, null, 4)}</pre> */}
+      {/* <pre>{JSON.stringify(isMirrored, null, 4)}</pre> */}
       <Navbar />
       <div className="flex h-[calc(100vh-50px)] justify-between">
         {/* Images */}
@@ -145,10 +187,12 @@ const HomePage = () => {
         <div className="px-10 w-[30%] overflow-scroll left-scroll-area">
           <Configurator
             currentModel={currentModel}
+            isMirrored={isMirrored}
             configuratorData={configuratorData}
             setConfiguratorData={setConfiguratorData}
             setSliderImages={setSliderImages}
             setIsImageChangeScroll={setIsImageChangeScroll}
+            generateSliderImagesForInterior={generateSliderImagesForInterior}
           />
         </div>
       </div>
