@@ -123,18 +123,18 @@ const HomePage = () => {
   // }, []);
 
   return (
-    <div className="">
+    <div className="overflow-hidden">
       {/* <pre>{JSON.stringify(configuratorData, null, 4)}</pre> */}
       <Navbar />
-      <div className="flex  h-[calc(100vh-50px)] justify-between">
+      <div className="flex h-[calc(100vh-50px)] justify-between">
         {/* Images */}
-        <div className="w-[70%] mt-[calc(100vh-(100vh-50px))] fixed top-0 bottom-0 left-0 h-[calc(100vh-50px)] ">
+        <div className="w-[70%] top-0 bottom-0 left-0 h-[calc(100vh-50px)] ">
           <Slider sliderImages={sliderImages} />
         </div>
 
         {/* Configurator */}
 
-        <div className="px-10 absolute z-10 top-0 bottom-0 right-0 w-[30vw] mt-[calc(100vh-(100vh-50px))]">
+        <div className="px-10 w-[30%] overflow-scroll left-scroll-area">
           <Configurator
             configuratorData={configuratorData}
             setConfiguratorData={setConfiguratorData}
