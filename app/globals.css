@@ -8,3 +8,6 @@
   height: calc(100vh - 50px);
   overflow: hidden;
 } */
+body {
+  font-family: var(--font-geist-sans);
+}

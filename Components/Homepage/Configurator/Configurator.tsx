@@ -429,7 +429,7 @@ const Configurator: React.FC<ConfiguratorProps> = ({
 
       {/* final section 5 */}
       <section className="section" id="section5">
-        <p className="text-[24px] mt-[120px]">Your configuration</p>
+        <p className="mt-[120px] text-[30px]">Your configuration</p>
         <div className="mt-[20px]">
           <p className="text-[14px] text-[#808080]">Space One</p>
           <p>
@@ -531,7 +531,9 @@ const Configurator: React.FC<ConfiguratorProps> = ({
           </div>
           <div>{formatNumberToCurrency(calculateTotalPrice())}</div>
         </div>
-        <button className="mt-[50px] w-full p-3 text-white rounded-lg bg-[#0096F7]">Continue</button>
+        <button className="mt-[50px] w-full p-3 text-white rounded-lg bg-[#0096F7]">
+          Continue
+        </button>
       </section>
 
       {/* empty space */}
