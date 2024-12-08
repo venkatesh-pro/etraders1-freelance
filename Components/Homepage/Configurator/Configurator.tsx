@@ -239,8 +239,24 @@ const Configurator: React.FC<ConfiguratorProps> = ({
           configuratorData.chooseYourLayoutFor16.map((d, i) => {
             return (
               <div
+                onClick={() => {
+                  const updatedData: ConfiguratorData = {
+                    ...configuratorData,
+                    chooseYourLayoutFor16:
+                      configuratorData.chooseYourLayoutFor16.map((model) =>
+                        model.name === d.name
+                          ? { ...model, isSelected: true }
+                          : { ...model, isSelected: false }
+                      ),
+                  };
+
+                  setConfiguratorData(updatedData);
+                }}
                 key={i}
                 className="flex border-2 justify-between p-4 rounded-xl mt-3 cursor-pointer"
+                style={{
+                  borderColor: `${d.isSelected ? "#0096F7" : ""}`,
+                }}
               >
                 <div>
                   <p>{d.name}</p>
@@ -258,6 +274,22 @@ const Configurator: React.FC<ConfiguratorProps> = ({
               <div
                 key={i}
                 className="flex border-2 justify-between p-4 rounded-xl mt-3 cursor-pointer"
+                style={{
+                  borderColor: `${d.isSelected ? "#0096F7" : ""}`,
+                }}
+                onClick={() => {
+                  const updatedData: ConfiguratorData = {
+                    ...configuratorData,
+                    chooseYourLayoutFor25:
+                      configuratorData.chooseYourLayoutFor25.map((model) =>
+                        model.name === d.name
+                          ? { ...model, isSelected: true }
+                          : { ...model, isSelected: false }
+                      ),
+                  };
+
+                  setConfiguratorData(updatedData);
+                }}
               >
                 <div>
                   <p>{d.name}</p>
@@ -273,6 +305,22 @@ const Configurator: React.FC<ConfiguratorProps> = ({
         {configuratorData.optionalUpgradesForLayout.map((d, i) => {
           return (
             <div
+              style={{
+                borderColor: `${d.isSelected ? "#0096F7" : ""}`,
+              }}
+              onClick={() => {
+                const updatedData: ConfiguratorData = {
+                  ...configuratorData,
+                  optionalUpgradesForLayout:
+                    configuratorData.optionalUpgradesForLayout.map((model) => ({
+                      ...model,
+                      isSelected:
+                        model.name === d.name ? !model.isSelected : false,
+                    })),
+                };
+
+                setConfiguratorData(updatedData);
+              }}
               key={i}
               className="flex border-2 justify-between p-4 rounded-xl mt-3 cursor-pointer"
             >
@@ -325,6 +373,22 @@ const Configurator: React.FC<ConfiguratorProps> = ({
         {configuratorData.optionalUpgradesForEnergy.map((d, i) => {
           return (
             <div
+              style={{
+                borderColor: `${d.isSelected ? "#0096F7" : ""}`,
+              }}
+              onClick={() => {
+                const updatedData: ConfiguratorData = {
+                  ...configuratorData,
+                  optionalUpgradesForEnergy:
+                    configuratorData.optionalUpgradesForEnergy.map((model) => ({
+                      ...model,
+                      isSelected:
+                        model.name === d.name ? !model.isSelected : false,
+                    })),
+                };
+
+                setConfiguratorData(updatedData);
+              }}
               key={i}
               className="flex border-2 justify-between p-4 rounded-xl mt-3 cursor-pointer"
             >
