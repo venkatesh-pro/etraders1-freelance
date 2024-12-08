@@ -98,9 +98,9 @@ export const data = {
   ],
   optionalUpgradesForEnergy: [
     {
-      name: "Sheer curtains",
-      description: "Privacy and shade",
-      price: 3700,
+      name: "Security screens",
+      description: "Deters bugs and insects",
+      price: 3100,
       isSelected: false,
     },
   ],

@@ -110,6 +110,31 @@ const Configurator: React.FC<ConfiguratorProps> = ({
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, [currentModel, isMirrored]);
+
+  const calculateTotalPrice = () => {
+    let totalPrice = 0;
+
+    // Iterate through each key in the data object
+    for (const key of Object.keys(configuratorData) as Array<
+      keyof ConfiguratorData
+    >) {
+      if (Array.isArray(configuratorData[key])) {
+        // Filter for items where `isSelected` is true and have a `price` property
+        const selectedItems = configuratorData[key].filter(
+          (item) =>
+            item.isSelected && "price" in item && typeof item.price === "number"
+        );
+
+        // Add their prices to the total
+        selectedItems.forEach((item) => {
+          totalPrice += (item as { price: number }).price;
+        });
+      }
+    }
+
+    return totalPrice;
+  };
+
   return (
     <div className="h-full left-scroll-area">
       {/* section 1 */}
@@ -402,10 +427,141 @@ const Configurator: React.FC<ConfiguratorProps> = ({
         })}
       </section>
 
-      {/* final section 4 */}
-      <div className="section" id="section5">
+      {/* final section 5 */}
+      <section className="section" id="section5">
         <p className="text-[24px] mt-[120px]">Your configuration</p>
-        <div className="h-[300px]"></div>
+        <div className="mt-[20px]">
+          <p className="text-[14px] text-[#808080]">Space One</p>
+          <p>
+            {configuratorData.chooseYourModel.find((d) => d.isSelected)?.length}
+          </p>
+        </div>
+        <hr className="mt-[13px] h-[1.5px] bg-[#CCCCCCCC]" />
+        <div className="mt-[15px] flex justify-between items-center">
+          <div>
+            <p className="text-[14px] text-[#808080]">Color</p>
+            <p>
+              {
+                configuratorData.chooseYourFinish.find((d) => d.isSelected)
+                  ?.name
+              }
+            </p>
+          </div>
+          <div>
+            <div
+              className={` flex items-center justify-center p-1 border-2 border-transparent`}
+            >
+              <div
+                className={` w-[38.89px] h-[38.89px] rounded-full`}
+                style={{
+                  background: configuratorData.chooseYourFinish.find(
+                    (d) => d.isSelected
+                  )?.color,
+                }}
+              ></div>
+            </div>
+          </div>
+        </div>
+        <hr className="mt-[13px] h-[1.5px] bg-[#CCCCCCCC]" />
+        <div className="mt-[15px] flex justify-between items-center">
+          <div>
+            <p className="text-[14px] text-[#808080]">Layout</p>
+            <p>
+              {currentModel === "Space One Plus"
+                ? configuratorData.chooseYourLayoutFor25.find(
+                    (d) => d.isSelected
+                  )?.name
+                : configuratorData.chooseYourLayoutFor16.find(
+                    (d) => d.isSelected
+                  )?.name}
+            </p>
+            <p>
+              {currentModel === "Space One Plus"
+                ? configuratorData.chooseYourLayoutFor25.find(
+                    (d) => d.isSelected
+                  )?.description
+                : configuratorData.chooseYourLayoutFor16.find(
+                    (d) => d.isSelected
+                  )?.description}
+            </p>
+          </div>
+        </div>
+        {/* energy */}
+        <hr className="mt-[13px] h-[1.5px] bg-[#CCCCCCCC]" />
+        <div className="mt-[15px] flex justify-between items-center">
+          <div>
+            <p className="text-[14px] text-[#808080]">Energy</p>
+            <p>
+              {
+                configuratorData.chooseYourEnergy.find((d) => d.isSelected)
+                  ?.name
+              }
+            </p>
+          </div>
+        </div>
+        {/* Upgrades */}
+        <hr className="mt-[13px] h-[1.5px] bg-[#CCCCCCCC]" />
+        <div className="mt-[15px] flex justify-between items-center">
+          <div>
+            <p className="text-[14px] text-[#808080]">Upgrades</p>
+            <p>
+              {
+                configuratorData.optionalUpgradesForLayout.find(
+                  (d) => d.isSelected
+                )?.name
+              }
+            </p>
+            <p>
+              {
+                configuratorData.optionalUpgradesForEnergy.find(
+                  (d) => d.isSelected
+                )?.name
+              }
+            </p>
+          </div>
+        </div>
+        {/* unit configured */}
+        <hr className="mt-[80px] h-[1.5px] bg-[#CCCCCCCC]" />
+        <div className="mt-[20px] flex justify-between">
+          <div className="w-[65%]">
+            <p>Unit as configured</p>
+            <p className="text-[14px] text-[#808080] mt-[16px]">
+              Excludes delivery, permitting, and on-site installation.
+            </p>
+          </div>
+          <div>{formatNumberToCurrency(calculateTotalPrice())}</div>
+        </div>
+        <button className="mt-[50px] w-full p-3 text-white rounded-lg bg-[#0096F7]">Continue</button>
+      </section>
+
+      {/* empty space */}
+      <div className="h-[200px] ">
+        {/* <div>
+          {JSON.stringify(
+            configuratorData.chooseYourModel.find((d) => d.isSelected)
+          )}
+          {JSON.stringify(
+            configuratorData.chooseYourFinish.find((d) => d.isSelected)
+          )}
+          {JSON.stringify(
+            configuratorData.chooseYourOrientation.find((d) => d.isSelected)
+          )}
+          {JSON.stringify(
+            configuratorData.chooseYourLayoutFor16.find((d) => d.isSelected)
+          )}
+          {JSON.stringify(
+            configuratorData.chooseYourLayoutFor25.find((d) => d.isSelected)
+          )}
+          {JSON.stringify(
+            configuratorData.optionalUpgradesForLayout.find((d) => d.isSelected)
+          )}
+          {JSON.stringify(
+            configuratorData.chooseYourEnergy.find((d) => d.isSelected)
+          )}
+          {JSON.stringify(
+            configuratorData.optionalUpgradesForEnergy.find((d) => d.isSelected)
+          )}
+        </div> */}
       </div>
     </div>
   );
