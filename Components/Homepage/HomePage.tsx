@@ -47,6 +47,7 @@ const HomePage = () => {
     orientation: Orientation | undefined,
     solar: Solar | undefined
   ) => {
+    console.log("inside+++++, generateSliderImages");
     if (!color || !orientation || !model) return [];
 
     const basePath = `/ConfiguratorImages/${color?.name} COMPRESSED 16:25`;
@@ -67,6 +68,7 @@ const HomePage = () => {
   };
   const generateSliderImagesForInterior = () => {
     // if (!color || !orientation || !model) return [];
+    console.log("inside=>>>", "generateSliderImagesForInterior");
 
     const basePath = `/ConfiguratorImages/INTERIOR COMPRESSED 16:25`;
 
@@ -102,6 +104,8 @@ const HomePage = () => {
   };
 
   const imageStoreInStateFunction = () => {
+    console.log("indieddfidfkdfkdkf===> 'imageStoreInStateFunction'");
+
     const selectedModel = configuratorData.chooseYourModel.find(
       (d) => d.isSelected
     );
@@ -137,43 +141,10 @@ const HomePage = () => {
       imageStoreInStateFunction();
     }
   }, [configuratorData, isImageChangeScroll]);
-  // useEffect(() => {
-  //   let lenis;
-
-  //   (async () => {
-  //     const Lenis = (await import("lenis")).default;
-
-  //     // Initialize Lenis
-  //     lenis = new Lenis({
-  //       smooth: true, // Enables smooth scrolling
-  //       duration: 4, // Duration of the smooth scroll effect
-  //       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Custom easing
-  //       direction: "vertical", // Scrolling direction (vertical/horizontal)
-  //     });
-
-  //     // Log scroll event for debugging
-  //     lenis.on("scroll", (e) => {
-  //       console.log("Scroll event:", e);
-  //     });
-
-  //     // Animation frame loop to ensure Lenis runs smoothly
-  //     function raf(time) {
-  //       lenis.raf(time);
-  //       requestAnimationFrame(raf);
-  //     }
-
-  //     requestAnimationFrame(raf);
-  //   })();
-
-  //   // Cleanup on component unmount
-  //   return () => {
-  //     if (lenis) lenis.destroy();
-  //   };
-  // }, []);
 
   return (
     <div className="overflow-hidden">
-      <pre>{JSON.stringify(isMirrored, null, 4)}</pre>
+      {/* <pre>{JSON.stringify({ sliderImages, isMirrored }, null, 4)}</pre> */}
       <Navbar />
       <div className="flex h-[calc(100vh-50px)] justify-between">
         {/* Images */}

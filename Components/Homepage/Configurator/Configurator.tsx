@@ -67,6 +67,7 @@ const Configurator: React.FC<ConfiguratorProps> = ({
 
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -96,13 +97,17 @@ const Configurator: React.FC<ConfiguratorProps> = ({
         onLeaveBack: () => {
           console.log("Leaving section3 from above");
 
-          setIsImageChangeScroll((prev: boolean) => !prev);
+          setIsImageChangeScroll((prev: boolean) => {
+            console.log({ prev, currentModel, isMirrored });
+            return !prev;
+          });
         },
       },
     });
 
     return () => {
       tl.kill();
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, [currentModel, isMirrored]);
   return (
@@ -152,8 +157,6 @@ const Configurator: React.FC<ConfiguratorProps> = ({
         <p className="text-[18px] mt-[120px]">Choose your finish</p>
         <div className={`flex justify-between max-w-[290px] mt-[17px]`}>
           {configuratorData.chooseYourFinish.map((d, i) => {
-            console.log({ d });
-
             return (
               <div
                 key={i}
