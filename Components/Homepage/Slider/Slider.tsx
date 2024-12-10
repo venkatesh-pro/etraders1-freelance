@@ -45,36 +45,40 @@ const Slider: React.FC<SliderProps> = ({ sliderImages }) => {
   }
 
   return (
-    <div className="slider w-full">
-      <div className="list" ref={listRef}>
+    <div className="slider w-full min-h-[calc(100vh-50px)]">
+      <div className="list w-full " ref={listRef}>
         {sliderImages.map((image: string, i: number) => (
-          <div className="item w-[70vw]" key={i}>
-            <img src={image} alt={`Slide ${i}`} />
+          <div className="item md:w-[60%] w-full h-full" key={i}>
+            <img
+              src={image}
+              alt={`Slide ${i}`}
+              className="w-full object-contain h-full"
+            />
           </div>
         ))}
       </div>
       <div className="buttons">
         <button
           id="prev"
-          className="rounded-full text-xl"
+          className="rounded-full bg-[#00000026] flex items-center justify-center text-xl"
           onClick={() =>
             setActive((prevActive) =>
               prevActive - 1 < 0 ? sliderImages.length - 1 : prevActive - 1
             )
           }
         >
-          {"<"}
+          <img src="/images/arrow-left.svg" alt="" />
         </button>
         <button
           id="next"
-          className="rounded-full text-xl"
+          className="rounded-full bg-[#00000026] flex items-center justify-center text-xl"
           onClick={() =>
             setActive((prevActive) =>
               prevActive + 1 >= sliderImages.length ? 0 : prevActive + 1
             )
           }
         >
-          {">"}
+          <img src="/images/arrow-right.svg" alt="" />
         </button>
       </div>
     </div>

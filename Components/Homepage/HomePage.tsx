@@ -143,18 +143,18 @@ const HomePage = () => {
   }, [configuratorData, isImageChangeScroll]);
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-scroll md:overflow-hidden">
       {/* <pre>{JSON.stringify({ sliderImages, isMirrored }, null, 4)}</pre> */}
       <Navbar />
-      <div className="flex h-[calc(100vh-50px)] justify-between">
+      <div className="flex flex-col md:flex-row md:h-[calc(100vh-50px)] h-[315px] justify-between ">
         {/* Images */}
-        <div className="w-[70%] top-0 bottom-0 left-0 h-[calc(100vh-50px)] ">
+        <div className="md:w-[60%] w-full min-h-[calc(100vh-50px)]">
           <Slider sliderImages={sliderImages} />
         </div>
 
         {/* Configurator */}
 
-        <div className="px-10 w-[30%] overflow-scroll left-scroll-area">
+        <div className="px-10 w-[40%] overflow-scroll left-scroll-area">
           <Configurator
             currentModel={currentModel}
             isMirrored={isMirrored}
