@@ -184,7 +184,7 @@ const Configurator: React.FC<ConfiguratorProps> = ({
           Configure your Space One design. Choose a layout, pick your cladding
           colour, and optional accessories.
         </p>
-        <p className="text-[18px] mt-[120px]">Choose your model</p>
+        <p className="text-[18px] mt-[60px] md:mt-[120px]">Choose your model</p>
         {configuratorData.chooseYourModel.map((d, i) => {
           return (
             <div
@@ -219,7 +219,9 @@ const Configurator: React.FC<ConfiguratorProps> = ({
 
       {/* section 2 */}
       <section className="section" id="section2">
-        <p className="text-[18px] mt-[120px]">Choose your finish</p>
+        <p className="text-[18px] mt-[60px] md:mt-[120px]">
+          Choose your finish
+        </p>
         <div className={`flex justify-between max-w-[290px] mt-[17px]`}>
           {configuratorData.chooseYourFinish.map((d, i) => {
             return (
@@ -266,7 +268,9 @@ const Configurator: React.FC<ConfiguratorProps> = ({
         </div>
 
         {/* Choose your orientation */}
-        <p className="text-[18px] mt-[120px]">Choose your orientation</p>
+        <p className="text-[18px] mt-[60px] md:mt-[120px]">
+          Choose your orientation
+        </p>
         {configuratorData.chooseYourOrientation.map((d, i) => {
           return (
             <div
@@ -298,7 +302,9 @@ const Configurator: React.FC<ConfiguratorProps> = ({
 
       {/* section 3 */}
       <section className="section" id="section3">
-        <p className="text-[18px] mt-[120px]">Choose your layout</p>
+        <p className="text-[18px] mt-[60px] md:mt-[120px]">
+          Choose your layout
+        </p>
         {/* 16 inch */}
         {currentModel === "Space One" &&
           configuratorData.chooseYourLayoutFor16.map((d, i) => {
@@ -366,7 +372,7 @@ const Configurator: React.FC<ConfiguratorProps> = ({
           })}
 
         {/* Choose your orientation */}
-        <p className="text-[18px] mt-[120px]">Optional upgrades</p>
+        <p className="text-[18px] mt-[60px] md:mt-[120px]">Optional upgrades</p>
         {configuratorData.optionalUpgradesForLayout.map((d, i) => {
           return (
             <div
@@ -401,7 +407,9 @@ const Configurator: React.FC<ConfiguratorProps> = ({
 
       {/* section 4 */}
       <section className="section" id="section4">
-        <p className="text-[18px] mt-[120px]">Choose your energy</p>
+        <p className="text-[18px] mt-[60px] md:mt-[120px]">
+          Choose your energy
+        </p>
         {configuratorData.chooseYourEnergy.map((d, i) => {
           return (
             <div
@@ -434,7 +442,7 @@ const Configurator: React.FC<ConfiguratorProps> = ({
         })}
 
         {/* Choose your orientation */}
-        <p className="text-[18px] mt-[120px]">Optional upgrades</p>
+        <p className="text-[18px] mt-[60px] md:mt-[120px]">Optional upgrades</p>
         {configuratorData.optionalUpgradesForEnergy.map((d, i) => {
           return (
             <div
@@ -469,7 +477,9 @@ const Configurator: React.FC<ConfiguratorProps> = ({
 
       {/* final section 5 */}
       <section className="section" id="section5">
-        <p className="mt-[120px] text-[30px]">Your configuration</p>
+        <p className="mt-[60px] md:mt-[120px] text-[30px]">
+          Your configuration
+        </p>
         <div className="mt-[20px]">
           <p className="text-[14px] text-[#808080]">Space One</p>
           <p>
@@ -577,7 +587,7 @@ const Configurator: React.FC<ConfiguratorProps> = ({
       </section>
 
       {/* empty space */}
-      <div className="h-[200px] ">
+      <div className="h-[120px] md:h-[200px] ">
         {/* <div>
           {JSON.stringify(
             configuratorData.chooseYourModel.find((d) => d.isSelected)
