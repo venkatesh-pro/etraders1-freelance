@@ -39,13 +39,13 @@ export const data = {
     {
       name: "Studio",
       description: "Mesa décor",
-      price: 64000,
+      price: 0,
       isSelected: true,
     },
     {
       name: "Bedroom",
       description: "Mesa Oak décor",
-      price: 72000,
+      price: 8000,
       isSelected: false,
     },
   ],
@@ -53,19 +53,19 @@ export const data = {
     {
       name: "Bedoom suite",
       description: "Mesa décor",
-      price: 64000,
+      price: 0,
       isSelected: true,
     },
     {
       name: "Bedroom ensuite",
       description: "Mesa Oak décor",
-      price: 72000,
+      price: 14000,
       isSelected: false,
     },
     {
       name: "Studio ensuite",
       description: "Mesa Oak décor",
-      price: 72000,
+      price: 28000,
       isSelected: false,
     },
   ],
@@ -144,7 +144,7 @@ export interface ConfiguratorData {
   chooseYourEnergy: Array<{
     name: string;
     description: string;
-    price?: number; // Optional since "No solar" doesn't have a price
+    price?: number | undefined; // Optional since "No solar" doesn't have a price
     isSelected: boolean;
   }>;
   optionalUpgradesForEnergy: Array<{

@@ -342,7 +342,7 @@ const Configurator: React.FC<ConfiguratorProps> = ({
                   <p className="font-bold text-[18px]">{d.name}</p>
                   <p className="text-[#808080] text-[12px]">{d.description}</p>
                 </div>
-                <div>From {formatNumberToCurrency(d.price)}</div>
+                {d?.price > 0 && <div>{formatNumberToCurrency(d.price)}</div>}
               </div>
             );
           })}
@@ -378,7 +378,9 @@ const Configurator: React.FC<ConfiguratorProps> = ({
                   <p className="font-bold text-[18px]">{d.name}</p>
                   <p className="text-[#808080] text-[12px]">{d.description}</p>
                 </div>
-                <div>From {formatNumberToCurrency(d.price)}</div>
+                {d?.price > 0 && (
+                  <div>From {formatNumberToCurrency(d.price)}</div>
+                )}
               </div>
             );
           })}
@@ -411,7 +413,7 @@ const Configurator: React.FC<ConfiguratorProps> = ({
                 <p className="font-bold text-[18px]">{d.name}</p>
                 <p className="text-[#808080] text-[12px]">{d.description}</p>
               </div>
-              <div>{formatNumberToCurrency(d.price)}</div>
+              {d.price > 0 && <div>From {formatNumberToCurrency(d.price)}</div>}
             </div>
           );
         })}
@@ -448,7 +450,9 @@ const Configurator: React.FC<ConfiguratorProps> = ({
                 <p className="font-bold text-[18px]">{d.name}</p>
                 <p className="text-[#808080] text-[12px]">{d.description}</p>
               </div>
-              {d?.price && <div>{formatNumberToCurrency(d.price)}</div>}
+              {(d.price ?? 0) > 0 && (
+                <div>{formatNumberToCurrency(d?.price ?? 0)}</div>
+              )}
             </div>
           );
         })}
