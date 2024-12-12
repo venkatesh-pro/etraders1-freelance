@@ -1,27 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
-import "./Slider.css";
+import React, { useEffect, useState } from "react";
 
 interface SliderProps {
   sliderImages: string[];
 }
 
 const Slider: React.FC<SliderProps> = ({ sliderImages }) => {
-  const listRef = useRef<HTMLDivElement | null>(null);
   const [active, setActive] = useState(0);
-
-  const reloadSlider = () => {
-    if (!listRef.current) return;
-
-    const items = Array.from(listRef.current.children) as HTMLElement[];
-    if (items.length === 0) return;
-
-    const checkLeft = items[active].offsetLeft;
-    listRef.current.style.left = -checkLeft + "px";
-  };
-
-  useEffect(() => {
-    reloadSlider();
-  }, [active]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -34,56 +18,79 @@ const Slider: React.FC<SliderProps> = ({ sliderImages }) => {
   }, [sliderImages.length]);
 
   useEffect(() => {
-    // Ensure `active` is within the valid range of the new `sliderImages` length
     setActive((prevActive) =>
       prevActive >= sliderImages.length ? sliderImages.length - 1 : prevActive
     );
   }, [sliderImages]);
 
   if (!sliderImages || sliderImages.length === 0) {
-    return <div>No images available</div>; // Handle empty images gracefully
+    return (
+      <div className="flex items-center justify-center w-full h-full">
+        No images available
+      </div>
+    );
   }
 
+  const translateValue = `translateX(-${active * 100}%)`;
+
   return (
-    <div className="slider w-full min-h-[calc(100vh-50px)]">
-      <div className="list w-[100vw] " ref={listRef}>
-        {sliderImages.map((image: string, i: number) => (
+    <div className="relative w-full h-full overflow-hidden">
+      {/* Slides container */}
+      <div
+        className="flex h-full transition-transform duration-500 ease-in-out"
+        style={{ transform: translateValue }}
+      >
+        {sliderImages.map((image, i) => (
           <div
-            className="item md:w-[60%] w-full md:min-h-[calc(100vh-50px)]  max-h-[315px] "
             key={i}
+            className="flex-shrink-0 w-full h-full flex items-center justify-center"
           >
             <img
               src={image}
               alt={`Slide ${i}`}
-              className="w-full object-contain h-full"
+              className="object-contain max-w-full max-h-full"
             />
           </div>
         ))}
       </div>
-      <div className="buttons">
+
+      {/* Buttons */}
+      <div className="absolute top-1/2 left-1/20 transform -translate-y-1/2 w-[90%] flex justify-between">
         <button
-          id="prev"
-          className="rounded-full bg-[#00000026] flex items-center justify-center text-xl"
           onClick={() =>
             setActive((prevActive) =>
               prevActive - 1 < 0 ? sliderImages.length - 1 : prevActive - 1
             )
           }
+          className="w-[50px] h-[50px] rounded-full bg-[#00000026] flex items-center justify-center border-none font-mono font-bold"
         >
-          <img src="/images/arrow-left.svg" alt="" />
+          <img src="/images/arrow-left.svg" alt="Previous" />
         </button>
         <button
-          id="next"
-          className="rounded-full bg-[#00000026] flex items-center justify-center text-xl"
           onClick={() =>
             setActive((prevActive) =>
               prevActive + 1 >= sliderImages.length ? 0 : prevActive + 1
             )
           }
+          className="w-[50px] h-[50px] rounded-full bg-[#00000026] flex items-center justify-center border-none font-mono font-bold"
         >
-          <img src="/images/arrow-right.svg" alt="" />
+          <img src="/images/arrow-right.svg" alt="Next" />
         </button>
       </div>
+
+      {/* Dots (If you want them) */}
+      {/* Example of tailwind classes for dots:
+      <ul className="absolute bottom-[10px] left-0 w-full flex justify-center text-white transition-all duration-1000">
+        {sliderImages.map((_, index) => (
+          <li
+            key={index}
+            className={`list-none w-[10px] h-[10px] bg-white m-[10px] rounded-full ${
+              index === active ? "w-[30px]" : ""
+            }`}
+          ></li>
+        ))}
+      </ul>
+      */}
     </div>
   );
 };
