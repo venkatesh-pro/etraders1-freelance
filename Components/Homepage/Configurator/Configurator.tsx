@@ -248,7 +248,9 @@ const Configurator: React.FC<ConfiguratorProps> = ({
                   }`}
                   style={{
                     border: `${
-                      d.isSelected ? "2px solid black" : "2px solid transparent"
+                      d.isSelected
+                        ? "2px solid #0096F7"
+                        : "2px solid transparent"
                     }`,
                   }}
                 >
@@ -507,10 +509,14 @@ const Configurator: React.FC<ConfiguratorProps> = ({
           <div>
             <p className="text-[14px] text-[#808080]">Color</p>
             <p>
-              {
-                configuratorData.chooseYourFinish.find((d) => d.isSelected)
-                  ?.name
-              }
+              {`${configuratorData.chooseYourFinish
+                .find((d) => d.isSelected)
+                ?.name.charAt(0)
+                .toUpperCase()}${configuratorData.chooseYourFinish
+                .find((d) => d.isSelected)
+                ?.name.slice(1)
+                .toLowerCase()}
+                `}
             </p>
           </div>
           <div>
