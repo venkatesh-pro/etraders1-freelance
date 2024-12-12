@@ -121,7 +121,7 @@ const HomePage = () => {
 
       <div className="flex w-full h-screen md:h-[calc(100vh-50px)]">
         {/* Slider Section */}
-        <div className="fixed md:static top-0 left-0 w-full md:w-[70%] h-[40vh] md:h-full overflow-hidden z-10 md:z-auto">
+        <div className="fixed md:static top-0 left-0 w-full md:w-[70%] h-[40vh] md:h-full overflow-hidden z-10 md:z-auto bg-white">
           <Slider sliderImages={sliderImages} />
         </div>
 
