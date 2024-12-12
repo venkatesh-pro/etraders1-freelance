@@ -67,7 +67,7 @@ const Configurator: React.FC<ConfiguratorProps> = ({
 
   const fadeOutImages = (onComplete?: () => void) => {
     gsap.to(".slider .list .item img", {
-      duration: 0.5,
+      duration: 0.2,
       opacity: 0,
       onComplete,
     });
@@ -78,7 +78,7 @@ const Configurator: React.FC<ConfiguratorProps> = ({
       gsap.fromTo(
         ".slider .list .item img",
         { opacity: 0 },
-        { opacity: 1, duration: 0.5 }
+        { opacity: 1, duration: 0.2 }
       );
     });
   };
