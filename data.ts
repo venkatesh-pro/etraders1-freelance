@@ -15,11 +15,11 @@ export const data = {
   ],
 
   chooseYourFinish: [
-    { color: "#000000", name: "Black", isSelected: true },
-    { color: "#E8E8E8", name: "White", isSelected: false },
-    { color: "#BCB7AD", name: "Desert", isSelected: false },
-    { color: "#565656", name: "Space", isSelected: false },
-    { color: "#344C3F", name: "Sage", isSelected: false },
+    { color: "#000000", name: "BLACK", isSelected: true },
+    { color: "#E8E8E8", name: "WHITE", isSelected: false },
+    { color: "#BCB7AD", name: "DESERT", isSelected: false },
+    { color: "#565656", name: "SPACE", isSelected: false },
+    { color: "#344C3F", name: "SAGE", isSelected: false },
   ],
   chooseYourOrientation: [
     {

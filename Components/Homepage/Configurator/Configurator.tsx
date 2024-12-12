@@ -261,7 +261,8 @@ const Configurator: React.FC<ConfiguratorProps> = ({
                 </div>
                 {d.isSelected && (
                   <p className="mt-2 text-sm text-center capitalize">
-                    {d.name}
+                    {d.name.charAt(0).toUpperCase() +
+                      d.name.slice(1).toLowerCase()}
                   </p>
                 )}
 
