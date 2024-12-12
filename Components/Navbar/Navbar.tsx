@@ -32,16 +32,17 @@ const Navbar = () => {
   return (
     <div
       className={`
-        bg-red-400  w-full h-[50px] z-50 
-        flex items-center 
+        bg-white w-full h-[50px] z-50
+        flex items-center
         transition-transform duration-300
         sticky top-0
-        md:relative 
+        md:relative
         ${
-          // When at top or scrolling up: translate-y-0 (visible)
-          // When scrolling down: -translate-y-full (hidden)
+          // Mobile logic: if at top or scrolling up, show navbar; if scrolling down, hide navbar.
+          // On desktop (md:), always visible because of md:translate-y-0.
           scrollTop || !isScrollingDown ? "translate-y-0" : "-translate-y-full"
         }
+        md:translate-y-0
       `}
     >
       <Image width={100} height={100} src={"/images/logo.svg"} alt="logo" />
