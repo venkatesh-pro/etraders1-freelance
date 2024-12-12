@@ -126,7 +126,7 @@ const HomePage = () => {
         </div>
 
         {/* Configurator Section */}
-        <div className="pt-[50vh] md:pt-0 md:w-[40%] h-full overflow-auto px-10">
+        <div className="pt-[50vh] md:pt-0 md:w-[40%] h-full overflow-auto px-10 left-scroll-area">
           <Configurator
             currentModel={currentModel}
             isMirrored={isMirrored}

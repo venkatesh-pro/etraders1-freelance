@@ -136,7 +136,7 @@ const Configurator: React.FC<ConfiguratorProps> = ({
   };
 
   return (
-    <div className="h-full left-scroll-area">
+    <div className="h-full left-scroll-ara">
       {/* section 1 */}
       <section className="section section1">
         <h1 className="text-[40px]">Space One</h1>
