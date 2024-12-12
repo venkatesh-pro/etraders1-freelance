@@ -65,23 +65,23 @@ const Configurator: React.FC<ConfiguratorProps> = ({
   //   };
   // }, []);
 
-  const fadeOutImages = (onComplete?: () => void) => {
-    gsap.to(".slider .list .item img", {
-      duration: 0.2,
-      opacity: 0,
-      onComplete,
-    });
-  };
+  // const fadeOutImages = (onComplete?: () => void) => {
+  //   gsap.to(".slider .list .item img", {
+  //     duration: 0.2,
+  //     opacity: 0,
+  //     onComplete,
+  //   });
+  // };
 
-  const fadeInImages = () => {
-    requestAnimationFrame(() => {
-      gsap.fromTo(
-        ".slider .list .item img",
-        { opacity: 0 },
-        { opacity: 1, duration: 0.2 }
-      );
-    });
-  };
+  // const fadeInImages = () => {
+  //   requestAnimationFrame(() => {
+  //     gsap.fromTo(
+  //       ".slider .list .item img",
+  //       { opacity: 0 },
+  //       { opacity: 1, duration: 0.2 }
+  //     );
+  //   });
+  // };
 
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -97,21 +97,21 @@ const Configurator: React.FC<ConfiguratorProps> = ({
         scroller: ".left-scroll-area",
         onEnter: () => {
           console.log("Entered section3");
-          // setSliderImages(generateSliderImagesForInterior());
+          setSliderImages(generateSliderImagesForInterior());
 
-          fadeOutImages(() => {
-            setSliderImages(generateSliderImagesForInterior());
-            fadeInImages();
-          });
+          // fadeOutImages(() => {
+          //   setSliderImages(generateSliderImagesForInterior());
+          //   fadeInImages();
+          // });
         },
         onLeave: () => {
           console.log("Left section3");
-          // setIsImageChangeScroll((prev: boolean) => !prev);
-          fadeOutImages(() => {
-            setIsImageChangeScroll((prev: boolean) => !prev);
-            // If this causes a new image set, fade them in after
-            fadeInImages();
-          });
+          setIsImageChangeScroll((prev: boolean) => !prev);
+          // fadeOutImages(() => {
+          //   setIsImageChangeScroll((prev: boolean) => !prev);
+          //   // If this causes a new image set, fade them in after
+          //   fadeInImages();
+          // });
         },
         onEnterBack: () => {
           console.log("Re-entering section3 from below");
@@ -120,27 +120,27 @@ const Configurator: React.FC<ConfiguratorProps> = ({
           //   "/ConfiguratorImages/INTERIOR COMPRESSED 16:25/16-wardorbe.jpg",
           // ]);
 
-          // setSliderImages(generateSliderImagesForInterior());
-          fadeOutImages(() => {
-            setSliderImages(generateSliderImagesForInterior());
-            fadeInImages();
-          });
+          setSliderImages(generateSliderImagesForInterior());
+          // fadeOutImages(() => {
+          //   setSliderImages(generateSliderImagesForInterior());
+          //   fadeInImages();
+          // });
         },
         onLeaveBack: () => {
           console.log("Leaving section3 from above");
 
-          // setIsImageChangeScroll((prev: boolean) => {
-          //   console.log({ prev, currentModel, isMirrored });
-          //   return !prev;
-          // });
-
-          fadeOutImages(() => {
-            setIsImageChangeScroll((prev: boolean) => {
-              console.log({ prev, currentModel, isMirrored });
-              return !prev;
-            });
-            fadeInImages();
+          setIsImageChangeScroll((prev: boolean) => {
+            console.log({ prev, currentModel, isMirrored });
+            return !prev;
           });
+
+          // fadeOutImages(() => {
+          //   setIsImageChangeScroll((prev: boolean) => {
+          //     console.log({ prev, currentModel, isMirrored });
+          //     return !prev;
+          //   });
+          //   fadeInImages();
+          // });
         },
       },
     });

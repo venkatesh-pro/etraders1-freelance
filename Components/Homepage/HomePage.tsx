@@ -22,10 +22,10 @@ const HomePage = () => {
   const [isMirrored, setIsMirrored] = useState(false);
 
   const [sliderImages, setSliderImages] = useState([
-    // "/ConfiguratorImages/BLACK COMPRESSED 16:25/16-black-1.jpg",
-    // "/ConfiguratorImages/BLACK COMPRESSED 16:25/16-black-2.jpg",
-    // "/ConfiguratorImages/BLACK COMPRESSED 16:25/16-black-3.jpg",
-    // "/ConfiguratorImages/BLACK COMPRESSED 16:25/16-black-4.jpg",
+    "/ConfiguratorImages/BLACK COMPRESSED 16:25/16-black-1.jpg",
+    "/ConfiguratorImages/BLACK COMPRESSED 16:25/16-black-2.jpg",
+    "/ConfiguratorImages/BLACK COMPRESSED 16:25/16-black-3.jpg",
+    "/ConfiguratorImages/BLACK COMPRESSED 16:25/16-black-4.jpg",
   ]);
 
   const generateSliderImages = (
