@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 interface SliderProps {
@@ -45,13 +44,13 @@ const Slider: React.FC<SliderProps> = ({ sliderImages }) => {
             key={i}
             className="item flex-shrink-0 w-full h-full flex items-center justify-center"
           >
-            <Image
+            <img
               src={image}
               alt={`Slide ${i}`}
               className="object-cover w-full h-full"
               width={1000}
               height={1000}
-              priority
+              // priority
             />
           </div>
         ))}
