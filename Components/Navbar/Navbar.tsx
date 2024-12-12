@@ -45,7 +45,7 @@ const Navbar = () => {
         md:translate-y-0
       `}
     >
-      <Image width={100} height={100} src={"/images/logo.svg"} alt="logo" />
+      <Image width={100} height={100} className="ml-4 md:ml-20" src={"/images/logo.svg"} alt="logo" />
     </div>
   );
 };

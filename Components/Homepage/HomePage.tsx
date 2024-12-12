@@ -116,17 +116,17 @@ const HomePage = () => {
   }, [configuratorData, isImageChangeScroll]);
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative w-full max-h-[100vh] overflow-hidden">
       <Navbar />
 
       <div className="flex w-full h-screen md:h-[calc(100vh-50px)]">
         {/* Slider Section */}
-        <div className="fixed md:static top-0 left-0 w-full md:w-[70%] h-[50vh] md:h-full overflow-hidden z-10 md:z-auto">
+        <div className="fixed md:static top-0 left-0 w-full md:w-[70%] h-[40vh] md:h-full overflow-hidden z-10 md:z-auto">
           <Slider sliderImages={sliderImages} />
         </div>
 
         {/* Configurator Section */}
-        <div className="pt-[50vh] md:pt-0 md:w-[30%] h-full overflow-auto px-10 left-scroll-area">
+        <div className="pt-[40vh] md:pt-0 md:w-[30%] h-full overflow-auto px-10 left-scroll-area">
           <Configurator
             currentModel={currentModel}
             isMirrored={isMirrored}
