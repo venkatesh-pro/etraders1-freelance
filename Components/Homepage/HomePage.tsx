@@ -5,7 +5,7 @@ import Navbar from "../Navbar/Navbar";
 import Configurator from "./Configurator/Configurator";
 import { ConfiguratorData, data } from "@/data";
 import Slider from "./Slider/Slider";
-import { usePreloadImages } from "../../hooks/usePreloadImages";
+import usePreloadImages from "../../hooks/usePreloadImages";
 
 type Model = { name: string };
 type Color = { name: string };
@@ -117,7 +117,11 @@ const HomePage = () => {
   }, [configuratorData, isImageChangeScroll]);
 
   const imagesLoaded = usePreloadImages(sliderImages);
+  console.log({ imagesLoaded });
 
+  useEffect(() => {
+    console.log("changed");
+  }, [sliderImages]);
   return (
     <div className="relative w-full max-h-[100vh] overflow-hidden">
       <Navbar />
