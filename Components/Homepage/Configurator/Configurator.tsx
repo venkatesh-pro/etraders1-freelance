@@ -259,8 +259,13 @@ const Configurator: React.FC<ConfiguratorProps> = ({
                     }}
                   ></div>
                 </div>
+                {d.isSelected && (
+                  <p className="mt-2 text-sm text-center capitalize">
+                    {d.name}
+                  </p>
+                )}
 
-                <p className="mt-2 text-sm text-center capitalize">{d.name}</p>
+                {/* <p className="mt-2 text-sm text-center capitalize">{d.name}</p> */}
                 {/* <p className="text-sm text-center">${data.price}</p> */}
               </div>
             );
