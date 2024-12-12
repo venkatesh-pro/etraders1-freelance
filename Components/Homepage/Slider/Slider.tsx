@@ -64,9 +64,13 @@ const Slider: React.FC<SliderProps> = ({ sliderImages }) => {
               prevActive - 1 < 0 ? sliderImages.length - 1 : prevActive - 1
             )
           }
-          className="w-[50px] h-[50px] rounded-full bg-[#00000026] flex items-center justify-center"
+          className="w-[40px] h-[40px] rounded-full bg-[#D1D0D0] flex items-center justify-center"
         >
-          <img src="/images/arrow-left.svg" alt="Previous" />
+          <img
+            src="/images/arrow-left.svg"
+            className="w-[16px]"
+            alt="Previous"
+          />
         </button>
         <button
           onClick={() =>
@@ -74,9 +78,9 @@ const Slider: React.FC<SliderProps> = ({ sliderImages }) => {
               prevActive + 1 >= sliderImages.length ? 0 : prevActive + 1
             )
           }
-          className="w-[50px] h-[50px] rounded-full bg-[#00000026] flex items-center justify-center"
+          className="w-[40px] h-[40px] rounded-full bg-[#D1D0D0] flex items-center justify-center"
         >
-          <img src="/images/arrow-right.svg" alt="Next" />
+          <img src="/images/arrow-right.svg" className="w-[16px]" alt="Next" />
         </button>
       </div>
     </div>

@@ -208,8 +208,8 @@ const Configurator: React.FC<ConfiguratorProps> = ({
               }}
             >
               <div>
-                <p>{d.name}</p>
-                <p>{d.length}</p>
+                <p className="font-bold text-[18px]">{d.name}</p>
+                <p className="text-[#808080] text-[12px]">{d.length}</p>
               </div>
               <div>From {formatNumberToCurrency(d.price)}</div>
             </div>
@@ -293,7 +293,7 @@ const Configurator: React.FC<ConfiguratorProps> = ({
                 setConfiguratorData(updatedData);
               }}
             >
-              <p>{d.name}</p>
+              <p className="font-bold text-[18px]">{d.name}</p>
               <p className="text-[#808080] text-[12px]">{d.description}</p>
             </div>
           );
@@ -330,8 +330,11 @@ const Configurator: React.FC<ConfiguratorProps> = ({
                 }}
               >
                 <div>
-                  <p>{d.name}</p>
-                  <p>{d.description}</p>
+                  {/* <p>{d.name}</p>
+                  <p>{d.description}</p> */}
+
+                  <p className="font-bold text-[18px]">{d.name}</p>
+                  <p className="text-[#808080] text-[12px]">{d.description}</p>
                 </div>
                 <div>From {formatNumberToCurrency(d.price)}</div>
               </div>
@@ -363,8 +366,11 @@ const Configurator: React.FC<ConfiguratorProps> = ({
                 }}
               >
                 <div>
-                  <p>{d.name}</p>
-                  <p>{d.description}</p>
+                  {/* <p>{d.name}</p>
+                  <p>{d.description}</p> */}
+
+                  <p className="font-bold text-[18px]">{d.name}</p>
+                  <p className="text-[#808080] text-[12px]">{d.description}</p>
                 </div>
                 <div>From {formatNumberToCurrency(d.price)}</div>
               </div>
@@ -396,8 +402,8 @@ const Configurator: React.FC<ConfiguratorProps> = ({
               className="flex border-2 justify-between p-4 rounded-xl mt-3 cursor-pointer"
             >
               <div>
-                <p>{d.name}</p>
-                <p>{d.description}</p>
+                <p className="font-bold text-[18px]">{d.name}</p>
+                <p className="text-[#808080] text-[12px]">{d.description}</p>
               </div>
               <div>{formatNumberToCurrency(d.price)}</div>
             </div>
@@ -433,8 +439,8 @@ const Configurator: React.FC<ConfiguratorProps> = ({
               }}
             >
               <div>
-                <p>{d.name}</p>
-                <p>{d.description}</p>
+                <p className="font-bold text-[18px]">{d.name}</p>
+                <p className="text-[#808080] text-[12px]">{d.description}</p>
               </div>
               {d?.price && <div>{formatNumberToCurrency(d.price)}</div>}
             </div>
@@ -466,8 +472,8 @@ const Configurator: React.FC<ConfiguratorProps> = ({
               className="flex border-2 justify-between p-4 rounded-xl mt-3 cursor-pointer"
             >
               <div>
-                <p>{d.name}</p>
-                <p>{d.description}</p>
+                <p className="font-bold text-[18px]">{d.name}</p>
+                <p className="text-[#808080] text-[12px]">{d.description}</p>
               </div>
               <div>{formatNumberToCurrency(d.price)}</div>
             </div>

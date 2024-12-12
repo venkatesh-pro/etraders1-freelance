@@ -5,6 +5,7 @@ import Navbar from "../Navbar/Navbar";
 import Configurator from "./Configurator/Configurator";
 import { ConfiguratorData, data } from "@/data";
 import Slider from "./Slider/Slider";
+import { usePreloadImages } from "../../hooks/usePreloadImages";
 
 type Model = { name: string };
 type Color = { name: string };
@@ -115,6 +116,8 @@ const HomePage = () => {
     }
   }, [configuratorData, isImageChangeScroll]);
 
+  const imagesLoaded = usePreloadImages(sliderImages);
+
   return (
     <div className="relative w-full max-h-[100vh] overflow-hidden">
       <Navbar />
@@ -122,7 +125,13 @@ const HomePage = () => {
       <div className="flex w-full h-screen md:h-[calc(100vh-50px)]">
         {/* Slider Section */}
         <div className="fixed md:static top-0 left-0 w-full md:w-[70%] h-[40vh] md:h-full overflow-hidden z-10 md:z-auto bg-white">
-          <Slider sliderImages={sliderImages} />
+          {!imagesLoaded ? (
+            <div className="flex items-center justify-center w-full h-full">
+              Loading images...
+            </div>
+          ) : (
+            <Slider sliderImages={sliderImages} />
+          )}
         </div>
 
         {/* Configurator Section */}
