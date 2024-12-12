@@ -46,9 +46,12 @@ const Slider: React.FC<SliderProps> = ({ sliderImages }) => {
 
   return (
     <div className="slider w-full min-h-[calc(100vh-50px)]">
-      <div className="list w-full " ref={listRef}>
+      <div className="list w-[100vw] " ref={listRef}>
         {sliderImages.map((image: string, i: number) => (
-          <div className="item md:w-[60%] w-full h-full" key={i}>
+          <div
+            className="item md:w-[60%] w-full md:min-h-[calc(100vh-50px)]  max-h-[315px] "
+            key={i}
+          >
             <img
               src={image}
               alt={`Slide ${i}`}

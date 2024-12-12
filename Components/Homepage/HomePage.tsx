@@ -148,7 +148,7 @@ const HomePage = () => {
       <Navbar />
       <div className="flex flex-col md:flex-row md:h-[calc(100vh-50px)] h-[315px] justify-between ">
         {/* Images */}
-        <div className="md:w-[60%] w-full min-h-[calc(100vh-50px)]">
+        <div className="md:w-[60%] w-full md:min-h-[calc(100vh-50px)]  h-[315px] ">
           <Slider sliderImages={sliderImages} />
         </div>
 
