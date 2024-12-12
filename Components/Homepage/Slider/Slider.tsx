@@ -34,16 +34,15 @@ const Slider: React.FC<SliderProps> = ({ sliderImages }) => {
   const translateValue = `translateX(-${active * 100}%)`;
 
   return (
-    <div className="relative w-full h-full overflow-hidden">
-      {/* Slides container */}
+    <div className="slider relative w-full h-full overflow-hidden">
       <div
-        className="flex h-full transition-transform duration-500 ease-in-out"
+        className="list flex h-full transition-transform duration-500 ease-in-out"
         style={{ transform: translateValue }}
       >
         {sliderImages.map((image, i) => (
           <div
             key={i}
-            className="flex-shrink-0 w-full h-full flex items-center justify-center"
+            className="item flex-shrink-0 w-full h-full flex items-center justify-center"
           >
             <img
               src={image}
@@ -54,15 +53,14 @@ const Slider: React.FC<SliderProps> = ({ sliderImages }) => {
         ))}
       </div>
 
-      {/* Buttons */}
-      <div className="absolute top-1/2 left-1/20 transform -translate-y-1/2 w-[90%] flex justify-between">
+      <div className="buttons absolute top-1/2 left-[5%] transform -translate-y-1/2 w-[90%] flex justify-between">
         <button
           onClick={() =>
             setActive((prevActive) =>
               prevActive - 1 < 0 ? sliderImages.length - 1 : prevActive - 1
             )
           }
-          className="w-[50px] h-[50px] rounded-full bg-[#00000026] flex items-center justify-center border-none font-mono font-bold"
+          className="w-[50px] h-[50px] rounded-full bg-[#00000026] flex items-center justify-center"
         >
           <img src="/images/arrow-left.svg" alt="Previous" />
         </button>
@@ -72,25 +70,11 @@ const Slider: React.FC<SliderProps> = ({ sliderImages }) => {
               prevActive + 1 >= sliderImages.length ? 0 : prevActive + 1
             )
           }
-          className="w-[50px] h-[50px] rounded-full bg-[#00000026] flex items-center justify-center border-none font-mono font-bold"
+          className="w-[50px] h-[50px] rounded-full bg-[#00000026] flex items-center justify-center"
         >
           <img src="/images/arrow-right.svg" alt="Next" />
         </button>
       </div>
-
-      {/* Dots (If you want them) */}
-      {/* Example of tailwind classes for dots:
-      <ul className="absolute bottom-[10px] left-0 w-full flex justify-center text-white transition-all duration-1000">
-        {sliderImages.map((_, index) => (
-          <li
-            key={index}
-            className={`list-none w-[10px] h-[10px] bg-white m-[10px] rounded-full ${
-              index === active ? "w-[30px]" : ""
-            }`}
-          ></li>
-        ))}
-      </ul>
-      */}
     </div>
   );
 };

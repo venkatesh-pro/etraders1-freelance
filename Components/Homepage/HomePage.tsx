@@ -119,16 +119,14 @@ const HomePage = () => {
     <div className="relative w-full h-full">
       <Navbar />
 
-      {/* On mobile: Fixed slider at top, half viewport height */}
-      {/* On desktop: Slider static on left */}
-      <div className="fixed md:static top-0 left-0 w-full h-[50vh] md:h-[calc(100vh-50px)] md:w-[60%] z-10 md:z-auto overflow-hidden">
-        <Slider sliderImages={sliderImages} />
-      </div>
+      <div className="flex w-full h-screen md:h-[calc(100vh-50px)]">
+        {/* Slider Section */}
+        <div className="fixed md:static top-0 left-0 w-full md:w-[60%] h-[50vh] md:h-full overflow-hidden z-10 md:z-auto">
+          <Slider sliderImages={sliderImages} />
+        </div>
 
-      {/* On mobile: push down content by 50vh */}
-      {/* On desktop: flex row */}
-      <div className="pt-[50vh] md:pt-0 md:flex md:flex-row md:h-[calc(100vh-50px)]">
-        <div className="px-10 w-full md:w-[40%] md:overflow-auto">
+        {/* Configurator Section */}
+        <div className="pt-[50vh] md:pt-0 md:w-[40%] h-full overflow-auto px-10">
           <Configurator
             currentModel={currentModel}
             isMirrored={isMirrored}
